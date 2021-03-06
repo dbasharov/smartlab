@@ -1,0 +1,1 @@
+ssh -t pi@172.20.10.6 'cd /home/pi/smartlab/src; python ./pca9685_servo.py'
