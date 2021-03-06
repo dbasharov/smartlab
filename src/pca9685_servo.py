@@ -8,7 +8,7 @@ test_channel = 0
 
 
 print "Servo tester..."
-print "Cnannel", test_channel
+print "Channel", test_channel
 print "-------------------"
 print "Unsigned servo value 0..100%"
 print "-------------------"
