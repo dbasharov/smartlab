@@ -6,7 +6,6 @@ from pca9685 import *
 servo = PCA9685()
 test_channel = 0
 
-
 print "Servo tester..."
 print "Channel", test_channel
 print "-------------------"
@@ -27,7 +26,6 @@ servo.setServo(test_channel, 0)
 time.sleep(3)
 
 print "\n"
-
 
 print "-------------------"
 print "Signed servo value -100%..100% with Reverse and expand limits to 120%"
@@ -54,12 +52,12 @@ servo.setServo(test_channel, 0)
 time.sleep(1)
 
 for value in range(100):
-	servo.setServo(test_channel, value)
-	time.sleep(0.01)
+    servo.setServo(test_channel, value)
+    time.sleep(0.01)
 
 for value in range(100):
-        servo.setServo(test_channel, 100-value)
-        time.sleep(0.01)
+    servo.setServo(test_channel, 100 - value)
+    time.sleep(0.01)
 
 servo.off()
 print "Done."

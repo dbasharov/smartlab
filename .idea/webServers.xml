@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="d653cf37-1c66-475f-844f-5e662421f6c8" name="Pi Local" url="http://pilocal">
-        <fileTransfer rootFolder="/home/pi" accessType="SFTP" host="172.20.10.6" port="22" sshConfigId="76b503a4-ad6a-4e3a-ae9b-c66e1ad16dc2" sshConfig="pi@172.20.10.6:22 password">
+        <fileTransfer rootFolder="/home/pi/smartlab" accessType="SFTP" host="172.20.10.6" port="22" sshConfigId="76b503a4-ad6a-4e3a-ae9b-c66e1ad16dc2" sshConfig="pi@172.20.10.6:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
