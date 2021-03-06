@@ -28,7 +28,6 @@ time.sleep(3)
 
 print "\n"
 
-
 print "-------------------"
 print "Signed servo value -100%..100% with Reverse and expand limits to 120%"
 print "-------------------"
