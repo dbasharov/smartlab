@@ -26,6 +26,7 @@ try:
         servo.setPWM(wheelRightRearForward, 4096, 0)
         time.sleep(0.01)
 
+    time.sleep(3)
     while True:
         servo.setPWM(wheelLeftFrontReverse, 4096, 0)
         servo.setPWM(wheelRightFrontReverse, 4096, 0)
