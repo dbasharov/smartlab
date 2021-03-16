@@ -18,9 +18,9 @@
 
 import smbus, math, time
 
-SERVO_MIN = 600 # 1us ; 4096 - 20 us ; 50 Hz
-SERVO_CENTER = 1500
-SERVO_MAX = 4000 # 2us
+SERVO_MIN = 204 # 1us ; 4096 - 20 us ; 50 Hz
+SERVO_CENTER = 307
+SERVO_MAX = 409 # 2us
 SERVO_ZONE = SERVO_MAX - SERVO_MIN
 
 class PCA9685:
