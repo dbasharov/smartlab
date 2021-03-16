@@ -6,7 +6,7 @@ from pca9685 import *
 servo = PCA9685()
 
 try:
-    test_channel = 7
+    test_channel = 1
 
     print "Servo tester..."
     print "Channel", test_channel
