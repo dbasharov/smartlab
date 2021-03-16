@@ -12,7 +12,7 @@ try:
     # time.sleep(1)
 
     for value in range(100):
-        servo.setPWM(test_channel, 4096, 4096)
+        servo.setPWM(test_channel, 4096, 500)
         time.sleep(0.01)
     #
     # for value in range(100):
