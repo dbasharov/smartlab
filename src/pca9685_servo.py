@@ -19,11 +19,12 @@ try:
     # servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
     # time.sleep(1)
 
-    for value in range(100):
-        servo.setPWM(wheelLeftFrontForward, 600, 4096)
-        servo.setPWM(wheelRightFrontForward, 600, 4096)
-        servo.setPWM(wheelLeftRearForward, 600, 4096)
-        servo.setPWM(wheelRightRearForward, 600, 4096)
+    # for value in range(100):
+    while True:
+        servo.setPWM(wheelLeftFrontForward, 4096, 4096)
+        servo.setPWM(wheelRightFrontForward, 4096, 4096)
+        servo.setPWM(wheelLeftRearForward, 4096, 4096)
+        servo.setPWM(wheelRightRearForward, 4096, 4096)
         time.sleep(0.01)
     #
     # time.sleep(3)
