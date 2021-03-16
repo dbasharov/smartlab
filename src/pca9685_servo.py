@@ -5,18 +5,18 @@ from pca9685 import *
 
 servo = PCA9685()
 
-wheel1 = 0
-wheel2 = 3
-wheel3 = 0
-wheel4 = 0
+wheelLefttRear = 0
+wheelLeftFront = 3
+wheelRightFront = 5
+wheelRightRear = 0
 
 try:
-    servo.servos[wheel1].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
+    servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
     # time.sleep(1)
 
     while True:
-        servo.setPWM(wheel1, 4096, 500)
-        servo.setPWM(wheel2, 4096, 500)
+        servo.setPWM(wheelLefttRear, 4096, 0)
+        servo.setPWM(wheelLefttRear, 4096, 0)
         time.sleep(0.01)
     #
     # for value in range(100):
