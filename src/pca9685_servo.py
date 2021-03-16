@@ -8,7 +8,7 @@ servo = PCA9685()
 wheelLefttRear = 0
 wheelLeftFront = 3
 wheelRightFront = 5
-wheelRightRear = 0
+wheelRightRear = 7
 
 try:
     servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
