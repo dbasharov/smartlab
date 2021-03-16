@@ -6,3 +6,4 @@ from SmartLab import *
 car = SmartLab()
 
 car.test_wheels()
+car.stop()
