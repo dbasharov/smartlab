@@ -6,7 +6,7 @@ from pca9685 import *
 servo = PCA9685()
 
 wheelLefttRear = 0
-wheelLeftFront = 3
+wheelLeftFront = 4
 wheelRightFront = 5
 wheelRightRear = 7
 
