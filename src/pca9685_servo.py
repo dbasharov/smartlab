@@ -5,6 +5,10 @@ from pca9685 import *
 
 servo = PCA9685()
 
+car = Car()
+car.goForward()
+car.stop()
+car.position()
 wheelLeftRearForward = 0
 wheelLeftFrontForward = 2
 wheelRightFrontForward = 4
@@ -42,6 +46,7 @@ try:
     #     time.sleep(0.01)
 except KeyboardInterrupt:
     print "Keyboard Interrupt"
+    car.turnLeft()
 finally:
     servo.off()
     print "Done."
