@@ -11,7 +11,7 @@ wheelRightFront = 5
 wheelRightRear = 7
 
 try:
-    servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
+    # servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
     # time.sleep(1)
 
     while True:
