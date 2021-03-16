@@ -20,10 +20,10 @@ try:
     # time.sleep(1)
 
     for value in range(100):
-        servo.setPWM(wheelLeftFrontForward, 0, 4096)
-        servo.setPWM(wheelRightFrontForward, 0, 4096)
-        servo.setPWM(wheelLeftRearForward, 0, 4096)
-        servo.setPWM(wheelRightRearForward, 0, 4096)
+        servo.setPWM(wheelLeftFrontForward, 600, 4096)
+        servo.setPWM(wheelRightFrontForward, 600, 4096)
+        servo.setPWM(wheelLeftRearForward, 600, 4096)
+        servo.setPWM(wheelRightRearForward, 600, 4096)
         time.sleep(0.01)
     #
     # time.sleep(3)
