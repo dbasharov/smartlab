@@ -19,7 +19,7 @@ try:
         servo.setPWM(wheelLeftFront, 4096, 0)
         servo.setPWM(wheelRightFront, 4096, 0)
         servo.setPWM(wheelRightRear, 4096, 0)
-        time.sleep(0.01)
+        time.sleep(1)
     #
     # for value in range(100):
     #     servo.setServo(test_channel, 100 - value)
