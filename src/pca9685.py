@@ -18,7 +18,7 @@
 
 import smbus, math, time
 
-SERVO_MIN = 260 # 1us ; 4096 - 20 us ; 50 Hz
+SERVO_MIN = 204 # 1us ; 4096 - 20 us ; 50 Hz
 SERVO_CENTER = 307
 SERVO_MAX = 409 # 2us
 SERVO_ZONE = SERVO_MAX - SERVO_MIN
