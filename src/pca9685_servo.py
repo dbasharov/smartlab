@@ -5,10 +5,10 @@ from pca9685 import *
 
 servo = PCA9685()
 
-car = Car()
-car.goForward()
-car.stop()
-car.position()
+# car = Car()
+# car.goForward()
+# car.stop()
+# car.position()
 wheelLeftRearForward = 0
 wheelLeftFrontForward = 2
 wheelRightFrontForward = 4
