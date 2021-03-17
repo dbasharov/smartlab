@@ -34,6 +34,7 @@ try:
 
 
     time.sleep(3)
+    servo.off()
     print("2-nd")
 
     for value in range(100):
