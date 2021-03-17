@@ -30,7 +30,10 @@ try:
         servo.setPWM(wheelLeftRearForward, 4096, 0)
         servo.setPWM(wheelRightRearForward, 4096, 0)
         time.sleep(0.01)
-        print("1-st")
+        i = +1
+        print i
+
+
 
     time.sleep(3)
     print("2-nd")
