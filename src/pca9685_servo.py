@@ -23,15 +23,15 @@ try:
     # servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
     # time.sleep(1)
 
-    # for value in range(100):
+    for value in range(100):
     # while True:
-    #     servo.setPWM(wheelLeftFrontForward, 4096, 0)
-    #     servo.setPWM(wheelRightFrontForward, 4096, 0)
-    #     servo.setPWM(wheelLeftRearForward, 4096, 0)
-    #     servo.setPWM(wheelRightRearForward, 4096, 0)
-    #     time.sleep(0.01)
+        servo.setPWM(wheelLeftFrontForward, 4096, 0)
+        servo.setPWM(wheelRightFrontForward, 4096, 0)
+        servo.setPWM(wheelLeftRearForward, 4096, 0)
+        servo.setPWM(wheelRightRearForward, 4096, 0)
+        time.sleep(0.01)
 
-    # time.sleep(3)
+    time.sleep(3)
     for value in range(100):
 
     # while True:
@@ -46,7 +46,7 @@ try:
     #     time.sleep(0.01)
 except KeyboardInterrupt:
     print "Keyboard Interrupt"
-    car.turnLeft()
+    # car.turnLeft()
 finally:
     servo.off()
     print "Done."
