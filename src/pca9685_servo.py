@@ -31,7 +31,7 @@ try:
     #     servo.setPWM(wheelRightRearForward, 4096, 0)
     #     time.sleep(0.01)
 
-    time.sleep(3)
+    # time.sleep(3)
     for value in range(100):
 
     # while True:
