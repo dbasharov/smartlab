@@ -4,7 +4,7 @@
 from pca9685 import *
 
 servo = PCA9685()
-test_channel = 15
+test_channel = 0
 
 
 print "Servo tester..."
