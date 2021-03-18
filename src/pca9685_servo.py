@@ -34,7 +34,7 @@ try:
 
 
 
-    servo.off()
+    # servo.off()
 
     time.sleep(3)
 
