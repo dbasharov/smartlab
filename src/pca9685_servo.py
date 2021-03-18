@@ -25,10 +25,10 @@ try:
 
     for value in range(100):
     # while True:
-        servo.setPWM(wheelLeftFrontForward, 3200, 0)
-        servo.setPWM(wheelRightFrontForward, 3200, 0)
-        servo.setPWM(wheelLeftRearForward, 3200, 0)
-        servo.setPWM(wheelRightRearForward, 3200, 0)
+        servo.setPWM(wheelLeftFrontForward, 4096, 0)
+        servo.setPWM(wheelRightFrontForward, 4096, 0)
+        servo.setPWM(wheelLeftRearForward, 4096, 0)
+        servo.setPWM(wheelRightRearForward, 4096, 0)
         time.sleep(0.01)
 
 
@@ -43,10 +43,10 @@ try:
     for value in range(100):
 
     # while True:
-        servo.setPWM(wheelLeftFrontReverse, 3500, 0)
-        servo.setPWM(wheelRightFrontReverse, 3500, 0)
-        servo.setPWM(wheelLeftRearReverse, 3500, 0)
-        servo.setPWM(wheelRightRearReverse, 3500, 0)
+        servo.setPWM(wheelLeftFrontReverse, 4096, 0)
+        servo.setPWM(wheelRightFrontReverse, 4096, 0)
+        servo.setPWM(wheelLeftRearReverse, 4096, 0)
+        servo.setPWM(wheelRightRearReverse, 4096, 0)
         time.sleep(0.01)
         print("3-rd")
     #
