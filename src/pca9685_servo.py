@@ -5,6 +5,8 @@ from pca9685 import *
 
 servo = PCA9685()
 
+print("2-nd")
+
 # car = Car()
 # car.goForward()
 # car.stop()
