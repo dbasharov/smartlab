@@ -27,10 +27,10 @@ try:
 
     for value in range(100):
     # while True:
-        servo.setPWM(wheelLeftFrontForward, 1000, 0)
-        servo.setPWM(wheelRightFrontForward, 4096, 0)
-        servo.setPWM(wheelLeftRearForward, 4096, 0)
-        servo.setPWM(wheelRightRearForward, 4096, 0)
+        servo.setPWM(wheelLeftFrontForward, 800, 0)
+        servo.setPWM(wheelRightFrontForward, 800, 0)
+        servo.setPWM(wheelLeftRearForward, 800, 0)
+        servo.setPWM(wheelRightRearForward, 800, 0)
         time.sleep(0.01)
 
 
