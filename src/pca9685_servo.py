@@ -25,7 +25,7 @@ try:
     # servo.servos[wheelLefttRear].set(signed=False, reverse=False, min=100, max=100, trim=0, exp=100)
     # time.sleep(1)
 
-    for value in range(100):
+    for value in range(500):
     # while True:
         servo.setPWM(wheelLeftFrontForward, 800, 0)
         servo.setPWM(wheelRightFrontForward, 800, 0)
@@ -42,13 +42,13 @@ try:
 
     print("2-nd")
 
-    for value in range(100):
+    for value in range(500):
 
     # while True:
         servo.setPWM(wheelLeftFrontReverse, 4096, 0)
-        servo.setPWM(wheelRightFrontReverse, 800, 0)
+        # servo.setPWM(wheelRightFrontReverse, 800, 0)
         servo.setPWM(wheelLeftRearReverse, 300, 0)
-        servo.setPWM(wheelRightRearReverse, 4096, 0)
+        # servo.setPWM(wheelRightRearReverse, 4096, 0)
         time.sleep(0.01)
         print("3-rd")
     # #
