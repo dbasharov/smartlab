@@ -45,9 +45,9 @@ try:
     for value in range(500):
 
     # while True:
-        servo.setPWM(wheelLeftFrontReverse, 4096, 0)
+        servo.setPWM(wheelLeftFrontReverse, 3000, 300)
         # servo.setPWM(wheelRightFrontReverse, 800, 0)
-        servo.setPWM(wheelLeftRearReverse, 300, 0)
+        servo.setPWM(wheelLeftRearReverse, 300, 3000)
         # servo.setPWM(wheelRightRearReverse, 4096, 0)
         time.sleep(0.01)
         print("3-rd")
