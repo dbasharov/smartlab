@@ -13,9 +13,9 @@ import Adafruit_PCA9685
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # (задаем переменну - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # частота ШИМ-сигнала, равная 50Гц (20 мс)
 
-servo_min=310
-servo_max=510
-servo_set=0
+servo_min=204
+servo_max=409
+servo_set=307
 
 spd_on = 4096
 spd_off = 0
