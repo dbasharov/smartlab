@@ -5,7 +5,7 @@
 
 
 # ssh -t pi@192.168.1.246 'cd /home/pi/smartlab/src; python ./pca9685_servo.py'
- ssh -t pi@192.168.1.246 'cd /home/pi/smartlab/src; python ./bot_con_v1a.py'
+ ssh -t pi@192.168.1.246 'cd /home/pi/smartlab/src; python3 ./bot_con_v1a.py'
 
 
 
