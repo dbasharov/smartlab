@@ -5,8 +5,8 @@
 
 
 # ssh -t pi@192.168.1.246 'cd /home/pi/smartlab/src; python ./pca9685_servo.py'
-# ssh -t pi@192.168.1.246 'cd /home/pi/smartlab/src; python3 ./bot_con_v1a.py'
- ssh -t pi@192.168.0.17 'cd /home/pi/smartlab/src; python3 ./bot_con_v1a.py'
+# ssh -t pi@192.168.1.246 'cd /home/pi/smartlab/src; python3 ./mechanical_control.py'
+ ssh -t pi@192.168.0.17 'cd /home/pi/smartlab/src; python3 ./mechanical_control.py'
 
 
 
