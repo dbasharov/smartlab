@@ -182,3 +182,9 @@ while 1: #запускаем общий цикл для всего - оптим�
     clock.tick(FPS)
 
  
+    except KeyboardInterrupt:
+    print "Keyboard Interrupt"
+
+    finally:
+    servo.off()
+    print "Done."
