@@ -76,7 +76,7 @@ while 1:
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flUp = flDown = flLeft = flRight = False
                 R1 = R2 = R3 = R4 = False
-                servo_set = 300  # сброс серв
+                servo_set = 307  # сброс серв
                 x = W // 2
                 y = H // 2
 
@@ -123,14 +123,17 @@ while 1:
         BR_on_B = 4096
         
     elif R1:#если была нажата кнопка "1"
-        servo_set=350
+        servo_set=204
     
     elif R2:
-        servo_set=450
+        servo_set=307
         
     elif R3:
-        servo_set =510 
-        
+        servo_set =409
+
+    elif R4:
+    # событие по клавише "4"
+
     sc.fill(WHITE)
     pygame.draw.rect(sc, BLUE, (x, y, 10, 10))
     pygame.display.update()
