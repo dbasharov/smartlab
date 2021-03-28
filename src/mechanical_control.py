@@ -11,7 +11,7 @@ import Adafruit_PCA9685
 #servo00 = ServoPCA9685.ServoPCA9685(pca9685, PCA9685.CHANNEL12)
 
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # (задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
-pwm.set_pwm_freq(50) # частота ШИМ-сигнала, равная 50Гц (20 мс)
+pwm.set_pwm_freq(50) # частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
 
 servo_min=204
 servo_max=409
