@@ -51,7 +51,7 @@ y = H // 2
 speed = 1
  
 flUp = flDown = flLeft = flRight = False
-R1 = R2 = R3 = R4 = False
+R1 = R2 = R3 = R4 = R5 = False
 
 while 1:
     for event in pygame.event.get():
@@ -74,10 +74,12 @@ while 1:
                 R3 = True
             elif event.key == pygame.K_4:
                 R4 = True
+            elif event.key == pygame.K_5:
+                R5 = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flUp = flDown = flLeft = flRight = False
-                R1 = R2 = R3 = R4 = False
+                R1 = R2 = R3 = R4 = R5 = False
                 servo_set_1 = 307  # сброс серв
                 servo_set_2 = 307  # сброс серв
                 x = W // 2
@@ -137,6 +139,9 @@ while 1:
 
     elif R4:
         servo_set_1 = 409
+
+    elif R5:
+        servo_set_1 = 204
 
     sc.fill(WHITE)
     pygame.draw.rect(sc, BLUE, (x, y, 10, 10))
