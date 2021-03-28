@@ -136,7 +136,7 @@ while 1:
         servo_set_2 = 409
 
     elif R4:
-        servo_set_2 = 409
+        servo_set_1 = 409
 
     sc.fill(WHITE)
     pygame.draw.rect(sc, BLUE, (x, y, 10, 10))
