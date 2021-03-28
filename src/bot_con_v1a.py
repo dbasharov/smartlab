@@ -183,8 +183,8 @@ while 1: #запускаем общий цикл для всего - оптим�
 
  
     except KeyboardInterrupt:
-    print "Keyboard Interrupt"
+    print ("Keyboard Interrupt")
 
     finally:
     servo.off()
-    print "Done."
+    print ("Done.")
