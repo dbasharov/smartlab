@@ -15,8 +15,8 @@ pwm.set_pwm_freq(50) # частота ШИМ-сигнала, равная 50Гц
 
 servo_min=204
 servo_max=409
-servo_set=307
-
+servo_set_1=307
+servo_set_2=307
 #
 
 spd_on = 4096
@@ -78,7 +78,8 @@ while 1:
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flUp = flDown = flLeft = flRight = False
                 R1 = R2 = R3 = R4 = False
-                servo_set = 307  # сброс серв
+                servo_set_1 = 307  # сброс серв
+                servo_set_2 = 307  # сброс серв
                 x = W // 2
                 y = H // 2
 
@@ -125,16 +126,17 @@ while 1:
         BR_on_B = 4096
         
     elif R1:#если была нажата кнопка "1"
-        servo_set=204
-    
+        servo_set_1=204
+        servo_set_2 = 204
     elif R2:
-        servo_set=307
-        
+        servo_set_1=307
+        servo_set_2 = 307
     elif R3:
-        servo_set =409
+        servo_set_1 = 409
+        servo_set_2 = 409
 
-     #elif R4:
-    # событие по клавише "4"
+    elif R4:
+        servo_set_2 = 409
 
     sc.fill(WHITE)
     pygame.draw.rect(sc, BLUE, (x, y, 10, 10))
@@ -148,11 +150,11 @@ while 1:
     pwm.set_pwm(10, BR_on_F, BR_off_F)#ЗП_вперёд
     pwm.set_pwm(11, BR_on_B, BR_off_B)#ЗП_назад
     
-    pwm.set_pwm(12, 0, servo_set)#серв 1
-    pwm.set_pwm(13, 0, servo_set)#серв 2
-    pwm.set_pwm(14, 0, servo_set)#серв 3        
-    pwm.set_pwm(15, 0, servo_set)#серв 4
-    
+    pwm.set_pwm(12, 0, servo_set_1)#серв 1
+    pwm.set_pwm(13, 0, servo_set_1)#серв 2
+    pwm.set_pwm(14, 0, servo_set_2)#серв 3
+    pwm.set_pwm(15, 0, servo_set_2)#серв 4
+
     
     clock.tick(FPS)
 
