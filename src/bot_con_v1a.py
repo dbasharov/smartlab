@@ -133,7 +133,7 @@ while 1:
     elif R3:
         servo_set =409
 
-    elif R4:
+     #elif R4:
     # событие по клавише "4"
 
     sc.fill(WHITE)
