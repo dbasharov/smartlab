@@ -190,7 +190,7 @@ while 1: # Запускаем общий цикл для всего - оптим
     pwm.set_pwm(15, 0, servo_set_2) # Серво 4 (задний правый, на задней оси)
 
     print ("FR_on_F=", FR_on_F)
-    print ("FR_of_F="), FR_of_F
+    print ("FR_off_F=", FR_off_F)
 
     clock.tick(FPS)
 
