@@ -26,6 +26,11 @@ wheel_3_backward_pwm = 0
 wheel_4_fwd_pwm = 0
 wheel_4_backward_pwm = 0
 
+
+speedUp = 0
+
+
+
 pygame.init() # инициализация опроса клавиатуры через Pygame
  
 W = 200 # установка размера графического окна, нужно ли - удалить?
@@ -142,17 +147,11 @@ while 1: # Запускаем общий цикл для всего - оптим
         # wheel_3_backward_pwm = 3072
         # wheel_4_backward_pwm = 3072
 
-        speedUp = 0
+        speedUp = speedUp + 20
+        wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
 
-        for value in range(200):
-        # while True:
-
-            speedUp = speedUp + 20
-            wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
-
-            if speedUp > 4095:
-                speedUp = 4095
-                time.sleep(0.1)
+        if speedUp > 4095:
+            speedUp = 4095
 
 
 
