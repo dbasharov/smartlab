@@ -143,11 +143,16 @@ while 1: # Запускаем общий цикл для всего - оптим
         # wheel_4_backward_pwm = 3072
 
         speedUp = 0
-        speedUp = speedUp + 20
-        wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
 
-        if speedUp > 4095:
-            speedUp = 4095
+        for value in range(20):
+        # while True:
+
+            speedUp = speedUp + 20
+            wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
+
+            if speedUp > 4095:
+                speedUp = 4095
+                time.sleep(0.1)
 
 
 
