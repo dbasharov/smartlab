@@ -144,7 +144,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
         speedUp = 0
 
-        for value in range(20):
+        for value in range(200):
         # while True:
 
             speedUp = speedUp + 20
