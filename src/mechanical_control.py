@@ -94,9 +94,9 @@ while 1: # Запускаем общий цикл для всего - оптим
                 y = H // 2 # сброс координат курсора
 
         elif event.type == pygame.KEYUP: # проверка отжатия кнопки
-            if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6]:
+            if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7]:
                 flagUp = flagDown = flagLeft = flagRight = False
-                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4  = servo_mode_5 = servo_mode_6 = False
+                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4  = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
                 wheel_1_fwd_pwm = 0
                 wheel_1_backward_pwm = 0
                 wheel_2_fwd_pwm = 0
