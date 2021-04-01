@@ -225,9 +225,11 @@ while 1: # Запускаем общий цикл для всего - оптим
     # тестирование плавного поворота серво
     elif test_servo_left:
         test_servo_pwm = test_servo_min
+        print (test_servo_pwm)
 
     elif test_servo_left:
         test_servo_pwm = test_servo_max
+        print (test_servo_pwm)
 
 
     sc.fill(WHITE) # окошко - нужно?
