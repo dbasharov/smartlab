@@ -90,9 +90,9 @@ while 1: # Запускаем общий цикл для всего - оптим
                 servo_mode_7 = True
 
             # тестирование плавного поворота серво
-            elif event.key == pygame.K_A:
+            elif event.key == pygame.K_8:
                 test_servo_left = True
-            elif event.key == pygame.K_D:
+            elif event.key == pygame.K_9:
                 test_servo_right = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
