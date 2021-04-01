@@ -10,8 +10,11 @@ import Adafruit_PCA9685
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # Частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
 
-servo_set_1 = 307 # установка серв передней оси в исходное положение
-servo_set_2 = 307 # установка серв задней оси в исходное положение
+servo_nul = 307 # установка серв передней оси в исходное положение
+servo_set_1_left = servo_nul # установка серв передней оси в исходное положение
+servo_set_1_right = servo_nul # установка серв передней оси в исходное положение
+servo_set_2_left = servo_nul # установка серв задней оси в исходное положение
+servo_set_2_right = servo_nul # установка серв задней оси в исходное положение
 
 # переменные, которые включают/выключают импульсы на колесах (ШИМ - пары чисел из адафрут 0, 4095 и т.п.)переднее левое включение/
 
@@ -80,10 +83,13 @@ while 1: # Запускаем общий цикл для всего - оптим
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flagUp = flagDown = flagLeft = flagRight = False
                 servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = False
-                servo_set_1 = 307  # установка серв в исходное положение
-                servo_set_2 = 307  # установка серв в исходное положение
-                x = W // 2
-                y = H // 2
+                servo_set_1_left = servo_nul  # установка серв в исходное положение
+                servo_set_1_right = servo_nul  # установка серв в исходное положение
+                servo_set_2_left = servo_nul  # установка серв в исходное положение
+                servo_set_2_right = servo_nul  # установка серв в исходное положение
+
+                x = W // 2 # сброс координат курсора
+                y = H // 2 # сброс координат курсора
 
         elif event.type == pygame.KEYUP: # проверка отжатия кнопки
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6]:
@@ -103,12 +109,14 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     # поворот серв передней оси налево
     if flagLeft:
-        servo_set_1 = 409
+        servo_set_1_left = 409
+        servo_set_1_right = 409
 
 
     # поворот серв передней оси направо
     elif flagRight:
-        servo_set_1 = 204
+        servo_set_1_left = 204
+        servo_set_1_right = 204
 
 
     # все вперед
@@ -142,9 +150,6 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
 
 
-
-
-
     # при развороте устанавливаем скорость поменьше (через ШИМ) (максимально - 4095 - постоянная прямая сигнала)
 
     elif servo_mode_1: # левый танковый разворот
@@ -164,20 +169,34 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
     elif servo_mode_3: # параллельная парковка, обе оси влево
-        servo_set_1 = 409
-        servo_set_2 = 409
+        servo_set_1_left = 409
+        servo_set_1_right = 409
+        servo_set_2_left = 409
+        servo_set_2_right = 409
 
     elif servo_mode_4: # параллельная парковка, обе оси вправо
-        servo_set_1 = 204
-        servo_set_2 = 204
+        servo_set_1_left = 204
+        servo_set_1_right = 204
+        servo_set_2_left = 204
+        servo_set_2_right = 204
 
     elif servo_mode_5: # движение по окружности вокруг центра против часовой стрелки
-        servo_set_1 = 409
-        servo_set_2 = 204
+        servo_set_1_left = 409
+        servo_set_1_right = 409
+        servo_set_2_left = 204
+        servo_set_2_right = 204
 
     elif servo_mode_6: # # движение по окружности вокруг центра по часовой стрелке
-        servo_set_1 = 204
-        servo_set_2 = 409
+        servo_set_1_left = 204
+        servo_set_1_right = 204
+        servo_set_2_left = 409
+        servo_set_2_right = 409
+
+    elif servo_mode_7: # # движение на месте вокруг своего центра
+        servo_set_1_left = 409
+        servo_set_1_right = 204
+        servo_set_2_left = 409
+        servo_set_2_right = 204
 
 
     sc.fill(WHITE) # окошко - нужно?
@@ -196,10 +215,10 @@ while 1: # Запускаем общий цикл для всего - оптим
     pwm.set_pwm(8, 0, wheel_4_backward_pwm)# Задний правый назад
 
     # обращение к серво через номер порта и параметры ШИМ (в переменных указываются значения ШИМ)
-    pwm.set_pwm(12, 0, servo_set_1) # Серво 1 (передний левый, на передней оси)
-    pwm.set_pwm(13, 0, servo_set_1) # Серво 2 (передний правый, на передней оси)
-    pwm.set_pwm(14, 0, servo_set_2) # Серво 3 (задний левый, на задней оси)
-    pwm.set_pwm(15, 0, servo_set_2) # Серво 4 (задний правый, на задней оси)
+    pwm.set_pwm(12, 0, servo_set_1_left) # Серво 1 (передний левый, на передней оси)
+    pwm.set_pwm(13, 0, servo_set_1_right) # Серво 2 (передний правый, на передней оси)
+    pwm.set_pwm(14, 0, servo_set_2_left) # Серво 3 (задний левый, на задней оси)
+    pwm.set_pwm(15, 0, servo_set_2_right) # Серво 4 (задний правый, на задней оси)
 
     print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
 
