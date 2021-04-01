@@ -229,7 +229,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     elif test_servo_left:
         test_servo_pwm = test_servo_max
-        print (test_servo_pwm)
+
 
 
     sc.fill(WHITE) # окошко - нужно?
@@ -257,10 +257,11 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     # тестирование плавного поворота серво
     pwm.set_pwm(0, 0, test_servo_pwm)
+    print (test_servo_pwm)
 
 
 
-    print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
+    # print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
 
     clock.tick(FPS)
 
