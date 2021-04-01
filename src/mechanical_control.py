@@ -50,7 +50,7 @@ x = W // 2 # установка координат центра окна для 
 y = H // 2
 speed = 1 # шаг перемещения курсора,  Проверить, надо? Выкинуть
  
-flUp = flDown = flLeft = flRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false, =0? проверить. Далее используются для управления стрелками с клавиатуры.
+flagUp = flagDown = flLeft = flRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false, =0? проверить. Далее используются для управления стрелками с клавиатуры.
 servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = False # Тоже самое, только управление цифрами с клавиатуры.
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
@@ -59,26 +59,26 @@ while 1: # Запускаем общий цикл для всего - оптим
             exit()
         elif event.type == pygame.KEYDOWN:# Проверка нажатия кнопки
             if event.key == pygame.K_LEFT: # Обозначение клавиш из Pygame
-                flLeft = True
+                flLeft = True # поворот передней оси влево
             elif event.key == pygame.K_RIGHT:
-                flRight = True
+                flRight = True # поворот передней оси вправо
             elif event.key == pygame.K_UP:
-                flUp = True
+                flagUp = True # все колеса вперед
             elif event.key == pygame.K_DOWN:
-                flDown = True
+                flagDown = True # все колеса назад
             elif event.key == pygame.K_1:
-                servo_mode_1 = True # параллельная парковка вправо
+                servo_mode_1 = True # левый танковый разворот
             elif event.key == pygame.K_2:
-                servo_mode_2 = True
+                servo_mode_2 = True # правый танковый разворот
             elif event.key == pygame.K_3:
-                servo_mode_3 = True # параллельная парковка влево
+                servo_mode_3 = True # параллельная парковка, обе оси влево
             elif event.key == pygame.K_4:
-                servo_mode_4 = True
+                servo_mode_4 = True # параллельная парковка, обе оси вправо
             elif event.key == pygame.K_5:
                 servo_mode_5 = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
-                flUp = flDown = flLeft = flRight = False
+                flagUp = flagDown = flLeft = flRight = False
                 servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = False
                 servo_set_1 = 307  # установка серв в исходное положение
                 servo_set_2 = 307  # установка серв в исходное положение
@@ -87,7 +87,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
         elif event.type == pygame.KEYUP: # проверка отжатия кнопки
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
-                flUp = flDown = flLeft = flRight = False
+                flagUp = flagDown = flLeft = flRight = False
                 servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = False
                 wheel_1_fwd_pwm = 0
                 wheel_1_backward_pwm = 0
@@ -114,7 +114,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
     # все вперед
-    elif flUp:
+    elif flagUp:
         # y -= speed # перемещение курсора в графическом окне
         # фиксированная скорость 4095 - максимум
         # wheel_1_fwd_pwm = 4095
@@ -129,7 +129,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
 
     # все назад
-    elif flDown:
+    elif flagDown:
         # y += speed
         # фиксированная скорость 4095 - максимум
         # wheel_1_backward_pwm = 3072
@@ -148,20 +148,20 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
         
-    elif servo_mode_1: # правый танковый разворот
-        # x -= speed # изменение координаты курора в окне - "-1" - на шаг speed - задан выше (=1). То есть х = х-1 (х уменьшить на один). Х - это половина размера окна - оптимизировать или удалить всю графику? Может быть оставить для отображения положения, передвижения, состояния платформы.
-        wheel_1_backward_pwm = 3072  # переднее левое крутим назад
-        wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
-        wheel_3_backward_pwm = 3072  # заднее левое крутим назад
-        wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
-
-
-    elif servo_mode_2: # левый танковый разворот
+    elif servo_mode_1: # левый танковый разворот
         # x += speed
         wheel_1_fwd_pwm = 3072  # переднее левое крутим вперед
         wheel_2_backward_pwm = 3072  # переднее правое крутим назад
         wheel_3_fwd_pwm = 3072  # заднее правое крутим вперед
         wheel_4_backward_pwm = 3072  # заднее правое крутим назад
+
+
+    elif servo_mode_2: # правый танковый разворот
+        # x -= speed # изменение координаты курора в окне - "-1" - на шаг speed - задан выше (=1). То есть х = х-1 (х уменьшить на один). Х - это половина размера окна - оптимизировать или удалить всю графику? Может быть оставить для отображения положения, передвижения, состояния платформы.
+        wheel_1_backward_pwm = 3072  # переднее левое крутим назад
+        wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
+        wheel_3_backward_pwm = 3072  # заднее левое крутим назад
+        wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
 
 
     elif servo_mode_3: # параллельная парковка, обе оси влево
