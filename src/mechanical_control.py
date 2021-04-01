@@ -92,6 +92,7 @@ while 1: # Запускаем общий цикл для всего - оптим
             # тестирование плавного поворота серво
             elif event.key == pygame.K_8:
                 test_servo_left = True
+
             elif event.key == pygame.K_9:
                 test_servo_right = True
 
@@ -104,6 +105,7 @@ while 1: # Запускаем общий цикл для всего - оптим
                 servo_set_2_right = servo_nul  # установка серв в исходное положение
 
                 # тестирование плавного поворота серво
+                test_servo_left = test_servo_right = False
                 test_servo_pwm = servo_nul
 
 
@@ -111,7 +113,7 @@ while 1: # Запускаем общий цикл для всего - оптим
                 y = H // 2 # сброс координат курсора
 
         elif event.type == pygame.KEYUP: # проверка отжатия кнопки
-            if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7]:
+            if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
                 flagUp = flagDown = flagLeft = flagRight = False
                 servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4  = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
                 wheel_1_fwd_pwm = 0
@@ -125,7 +127,7 @@ while 1: # Запускаем общий цикл для всего - оптим
                 speedUp = 2048
 
                 # тестирование плавного поворота серво
-                # test_servo_left = test_servo_right = False
+                test_servo_left = test_servo_right = False
 
 
     # Если была нажата кнопка "влево" (ПРОВЕРКА сосстояния - если flagLeft = true), то присваиваем значения переменным, отвечающим за положение серво.
