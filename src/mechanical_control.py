@@ -152,7 +152,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
 
         if speedUp > 4085:
-            speedUp = 4095
+            speedUp = 4085
 
 
 
