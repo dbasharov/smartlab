@@ -10,10 +10,8 @@ import Adafruit_PCA9685
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # Частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
 
-servo_min=204
-servo_max=409
-servo_set_1=307
-servo_set_2=307
+servo_set_1 = 307 # установка серв передней оси в исходное положение
+servo_set_2 = 307 # установка серв задней оси в исходное положение
 
 # переменные, которые включают/выключают импульсы на колесах (ШИМ - пары чисел из адафрут 0, 4095 и т.п.)переднее левое включение/
 
@@ -27,7 +25,7 @@ wheel_4_fwd_pwm = 0
 wheel_4_backward_pwm = 0
 
 
-speedUp = 2048
+speedUp = 2048 # установка нижнего значения скорости двигателя, используется для плавного ускорения (при низких значениях двигатель дергается и не едет).
 
 
 
@@ -50,8 +48,8 @@ x = W // 2 # установка координат центра окна для 
 y = H // 2
 speed = 1 # шаг перемещения курсора,  Проверить, надо? Выкинуть
  
-flagUp = flagDown = flLeft = flRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false, =0? проверить. Далее используются для управления стрелками с клавиатуры.
-servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = False # Тоже самое, только управление цифрами с клавиатуры.
+flagUp = flagDown = flLeft = flRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false. Далее используются для управления стрелками с клавиатуры.
+servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = False # Тоже самое, только управление цифрами с клавиатуры.
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
     for event in pygame.event.get():
@@ -76,10 +74,12 @@ while 1: # Запускаем общий цикл для всего - оптим
                 servo_mode_4 = True # параллельная парковка, обе оси вправо
             elif event.key == pygame.K_5:
                 servo_mode_5 = True
+            elif event.key == pygame.K_6:
+                servo_mode_6 = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flagUp = flagDown = flLeft = flRight = False
-                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = False
+                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = False
                 servo_set_1 = 307  # установка серв в исходное положение
                 servo_set_2 = 307  # установка серв в исходное положение
                 x = W // 2
@@ -172,9 +172,13 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_1 = 204
         servo_set_2 = 204
 
-    elif servo_mode_5: # пустой
-        servo_set_1 = 307
-        servo_set_2 = 307
+    elif servo_mode_5: # движение по окружности вокруг центра против часовой стрелки
+        servo_set_1 = 409
+        servo_set_2 = 204
+
+    elif servo_mode_6: # # движение по окружности вокруг центра по часовой стрелке
+        servo_set_1 = 204
+        servo_set_2 = 409
 
 
     sc.fill(WHITE) # окошко - нужно?
