@@ -140,6 +140,10 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_3_fwd_pwm = 4095
         wheel_4_fwd_pwm = 4095
 
+        speedUp = speedUp + 20
+        if speedUp > 4095:
+            speedUp = 4095
+
     # все назад
     elif flDown:
         # y += speed
