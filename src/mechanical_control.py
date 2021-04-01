@@ -91,14 +91,11 @@ while 1: # Запускаем общий цикл для всего - оптим
                 wheel_1_fwd_pwm = 0
                 wheel_1_backward_pwm = 0
                 wheel_2_fwd_pwm = 0
-                # wheel_2_backward_pwm = 0
+                wheel_2_backward_pwm = 0
                 wheel_3_fwd_pwm = 0
                 wheel_3_backward_pwm = 0
                 wheel_4_fwd_pwm = 0
                 wheel_4_backward_pwm = 0
-                for i in range(wheel_2_backward_pwm, 0 , 1000):
-                    print (wheel_2_backward_pwm)
-
 
 
     # Левый танковый разворот. Если была нажата кнопка "влево"  (ПРОВЕРКА сосстояния - если flLeft = true), то присваиваем значения переменным, отвечающим за направление вращения двигателем, значение скорости через параметры ШИМ.
