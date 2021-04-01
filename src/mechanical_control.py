@@ -195,8 +195,8 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_2_right = 409
 
     elif servo_mode_7: # # движение на месте вокруг своего центра
-        servo_set_1_left = 409
-        servo_set_1_right = 204
+        servo_set_1_left = 204
+        servo_set_1_right = 409
         servo_set_2_left = 409
         servo_set_2_right = 204
 
