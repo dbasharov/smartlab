@@ -79,10 +79,12 @@ while 1: # Запускаем общий цикл для всего - оптим
                 servo_mode_5 = True
             elif event.key == pygame.K_6:
                 servo_mode_6 = True
+            elif event.key == pygame.K_7:
+                servo_mode_7 = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flagUp = flagDown = flagLeft = flagRight = False
-                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = False
+                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
                 servo_set_1_left = servo_nul  # установка серв в исходное положение
                 servo_set_1_right = servo_nul  # установка серв в исходное положение
                 servo_set_2_left = servo_nul  # установка серв в исходное положение
