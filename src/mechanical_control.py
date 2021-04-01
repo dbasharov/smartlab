@@ -96,7 +96,8 @@ while 1: # Запускаем общий цикл для всего - оптим
                 wheel_3_backward_pwm = 0
                 wheel_4_fwd_pwm = 0
                 wheel_4_backward_pwm = 0
-                range(wheel_2_backward_pwm, 0 , 1000)
+                for i in range(wheel_2_backward_pwm, 0 , 1000):
+                    print (wheel_2_backward_pwm)
 
 
 
