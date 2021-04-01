@@ -88,7 +88,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         elif event.type == pygame.KEYUP: # проверка отжатия кнопки
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_4, pygame.K_5]:
                 flUp = flDown = flLeft = flRight = False
-                servo_mode_4 = servo_mode_5 = False
+                servo_mode_1 = servo_mode_2 = False
                 wheel_1_fwd_pwm = 0
                 wheel_1_backward_pwm = 0
                 wheel_2_fwd_pwm = 0
@@ -148,31 +148,33 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
         
-    elif servo_mode_1: # если была нажата кнопка "1" - управление сервами через цифры, переменные осей 1 и 2
-        servo_set_1 = 204
-        servo_set_2 = 204
-
-    elif servo_mode_2: # пустой
-        servo_set_1 = 307
-        servo_set_2 = 307
-
-    elif servo_mode_3:
-        servo_set_1 = 409
-        servo_set_2 = 409
-
-    elif servo_mode_4: # правый танковый разворот
+    elif servo_mode_1: # правый танковый разворот
         # x -= speed # изменение координаты курора в окне - "-1" - на шаг speed - задан выше (=1). То есть х = х-1 (х уменьшить на один). Х - это половина размера окна - оптимизировать или удалить всю графику? Может быть оставить для отображения положения, передвижения, состояния платформы.
         wheel_1_backward_pwm = 3072  # переднее левое крутим назад
         wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
         wheel_3_backward_pwm = 3072  # заднее левое крутим назад
         wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
 
-    elif servo_mode_5: # левый танковый разворот
+
+    elif servo_mode_2: # левый танковый разворот
         # x += speed
         wheel_1_fwd_pwm = 3072  # переднее левое крутим вперед
         wheel_2_backward_pwm = 3072  # переднее правое крутим назад
         wheel_3_fwd_pwm = 3072  # заднее правое крутим вперед
         wheel_4_backward_pwm = 3072  # заднее правое крутим назад
+
+
+    elif servo_mode_3: # параллельная парковка, обе оси вправо
+        servo_set_1 = 409
+        servo_set_2 = 409
+
+    elif servo_mode_4: # параллельная парковка, обе оси влево
+        servo_set_1 = 204
+        servo_set_2 = 204
+
+    elif servo_mode_5: # пустой
+        servo_set_1 = 307
+        servo_set_2 = 307
 
 
     sc.fill(WHITE) # окошко - нужно?
