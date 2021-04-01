@@ -27,7 +27,7 @@ wheel_4_fwd_pwm = 0
 wheel_4_backward_pwm = 0
 
 
-speedUp = 0
+speedUp = 1500
 
 
 
