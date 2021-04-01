@@ -89,9 +89,9 @@ while 1: # Запускаем общий цикл для всего - оптим
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN]:
                 flUp = flDown = flLeft = flRight = False
                 wheel_1_fwd_pwm = 0
-                # wheel_1_backward_pwm = 0
+                wheel_1_backward_pwm = 0
                 wheel_2_fwd_pwm = 0
-                wheel_2_backward_pwm = 0
+                # wheel_2_backward_pwm = 0
                 wheel_3_fwd_pwm = 0
                 wheel_3_backward_pwm = 0
                 wheel_4_fwd_pwm = 0
