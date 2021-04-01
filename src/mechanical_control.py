@@ -200,6 +200,18 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_2_left = 409
         servo_set_2_right = 204
 
+        if flagUp:
+            wheel_1_backward_pwm = 3072  # переднее левое крутим назад
+            wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
+            wheel_3_backward_pwm = 3072  # заднее левое крутим назад
+            wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
+
+        elif flagDown:
+            wheel_1_fwd_pwm = 3072  # переднее левое крутим вперед
+            wheel_2_backward_pwm = 3072  # переднее правое крутим назад
+            wheel_3_fwd_pwm = 3072  # заднее правое крутим вперед
+            wheel_4_backward_pwm = 3072  # заднее правое крутим назад
+
 
     sc.fill(WHITE) # окошко - нужно?
     pygame.draw.rect(sc, BLUE, (x, y, 10, 10)) # размер курсора - нужно?
