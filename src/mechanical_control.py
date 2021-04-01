@@ -96,7 +96,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         elif event.type == pygame.KEYUP: # проверка отжатия кнопки
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7]:
                 flagUp = flagDown = flagLeft = flagRight = False
-                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4  = servo_mode_5 = servo_mode_6 = False
+                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4  = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
                 wheel_1_fwd_pwm = 0
                 wheel_1_backward_pwm = 0
                 wheel_2_fwd_pwm = 0
@@ -122,13 +122,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
     # все вперед
-    elif flagUp and servo_mode_7:
-
-        wheel_1_backward_pwm = 3072  # переднее левое крутим назад
-        wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
-        wheel_3_backward_pwm = 3072  # заднее левое крутим назад
-        wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
-
+    elif flagUp:
         # y -= speed # перемещение курсора в графическом окне
         # фиксированная скорость 4095 - максимум
         # wheel_1_fwd_pwm = 4095
@@ -136,7 +130,6 @@ while 1: # Запускаем общий цикл для всего - оптим
         # wheel_3_fwd_pwm = 4095
         # wheel_4_fwd_pwm = 4095
 
-    elif flagUp:
         # плавное ускорение вперед
         speedUp = speedUp + 20
         if speedUp > 4095:
@@ -149,10 +142,10 @@ while 1: # Запускаем общий цикл для всего - оптим
     elif flagDown:
         # y += speed
         # фиксированная скорость 4095 - максимум
-        # wheel_1_backward_pwm = 3072
-        # wheel_2_backward_pwm = 3072 # переднее правое колесо назад - значение ШИМ - нужное значение (в данном случае 3072 = 75%), определяет скорость вращения двигателя, в нужном месте "отпускает уровень", максимальное значение 4095 - значит, что уровень поднят постоянно, фактически не ШИМ, а прямая
-        # wheel_3_backward_pwm = 3072
-        # wheel_4_backward_pwm = 3072
+        # wheel_1_backward_pwm = 4095
+        # wheel_2_backward_pwm = 4095 # переднее правое колесо назад - значение ШИМ - нужное значение (в данном случае 3072 = 75%), определяет скорость вращения двигателя, в нужном месте "отпускает уровень", максимальное значение 4095 - значит, что уровень поднят постоянно, фактически не ШИМ, а прямая
+        # wheel_3_backward_pwm = 4095
+        # wheel_4_backward_pwm = 4095
 
         # плавное ускорение назад
         speedUp = speedUp + 20
