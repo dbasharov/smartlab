@@ -52,7 +52,7 @@ y = H // 2
 speed = 1 # шаг перемещения курсора,  Проверить, надо? Выкинуть
  
 flagUp = flagDown = flagLeft = flagRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false. Далее используются для управления стрелками с клавиатуры.
-servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = False # Тоже самое, только управление цифрами с клавиатуры.
+servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False # Тоже самое, только управление цифрами с клавиатуры.
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
     for event in pygame.event.get():
