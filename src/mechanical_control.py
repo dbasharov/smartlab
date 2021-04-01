@@ -51,7 +51,7 @@ y = H // 2
 speed = 1 # шаг перемещения курсора,  Проверить, надо? Выкинуть
  
 flUp = flDown = flLeft = flRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false, =0? проверить. Далее используются для управления стрелками с клавиатуры.
-R1 = R2 = R3 = R4 = R5 = False # Тоже самое, только управление цифрами с клавиатуры.
+servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = False # Тоже самое, только управление цифрами с клавиатуры.
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
     for event in pygame.event.get():
@@ -67,19 +67,19 @@ while 1: # Запускаем общий цикл для всего - оптим
             elif event.key == pygame.K_DOWN:
                 flDown = True
             elif event.key == pygame.K_1:
-                R1 = True
+                servo_mode_1 = True #
             elif event.key == pygame.K_2:
-                R2 = True
+                servo_mode_2 = True
             elif event.key == pygame.K_3:
-                R3 = True
+                servo_mode_3 = True
             elif event.key == pygame.K_4:
-                R4 = True
+                servo_mode_4 = True
             elif event.key == pygame.K_5:
-                R5 = True
+                servo_mode_5 = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 flUp = flDown = flLeft = flRight = False
-                R1 = R2 = R3 = R4 = R5 = False
+                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = False
                 servo_set_1 = 307  # установка серв в исходное положение
                 servo_set_2 = 307  # установка серв в исходное положение
                 x = W // 2
@@ -159,22 +159,22 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
         
-    elif R1:#если была нажата кнопка "1" - управление сервами через цифры, переменные осей 1 и 2
+    elif servo_mode_1:#если была нажата кнопка "1" - управление сервами через цифры, переменные осей 1 и 2
         servo_set_1 = 204
         servo_set_2 = 204
 
-    elif R2:
+    elif servo_mode_2:
         servo_set_1 = 307
         servo_set_2 = 307
 
-    elif R3:
+    elif servo_mode_3:
         servo_set_1 = 409
         servo_set_2 = 409
 
-    elif R4:
+    elif servo_mode_4:
         servo_set_1 = 409
 
-    elif R5:
+    elif servo_mode_5:
         servo_set_1 = 204
 
     sc.fill(WHITE) # окошко - нужно?
