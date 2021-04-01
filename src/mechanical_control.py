@@ -135,14 +135,16 @@ while 1: # Запускаем общий цикл для всего - оптим
     # все вперед
     elif flUp:
         # y -= speed # перемещение курсора в графическом окне
-        wheel_1_fwd_pwm = 4095
-        wheel_2_fwd_pwm = 4095 # переднее правое колесо вперед - значение ШИМ
-        wheel_3_fwd_pwm = 4095
-        wheel_4_fwd_pwm = 4095
+        # wheel_1_fwd_pwm = 4095
+        # wheel_2_fwd_pwm = 4095 # переднее правое колесо вперед - значение ШИМ
+        # wheel_3_fwd_pwm = 4095
+        # wheel_4_fwd_pwm = 4095
 
         speedUp = speedUp + 20
         if speedUp > 4095:
             speedUp = 4095
+
+        wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
 
     # все назад
     elif flDown:
