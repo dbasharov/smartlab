@@ -122,19 +122,23 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
     # все вперед
-    elif flagUp:
+    elif flagUp and servo_mode_7:
+
         # y -= speed # перемещение курсора в графическом окне
         # фиксированная скорость 4095 - максимум
-        # wheel_1_fwd_pwm = 4095
-        # wheel_2_fwd_pwm = 4095 # переднее правое колесо вперед - значение ШИМ
-        # wheel_3_fwd_pwm = 4095
-        # wheel_4_fwd_pwm = 4095
+        wheel_1_fwd_pwm = 4095
+        wheel_2_fwd_pwm = 4095 # переднее правое колесо вперед - значение ШИМ
+        wheel_3_fwd_pwm = 4095
+        wheel_4_fwd_pwm = 4095
 
+    elif flagUp:
         # плавное ускорение вперед
         speedUp = speedUp + 20
         if speedUp > 4095:
             speedUp = 4095
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
+
+
 
     # все назад
     elif flagDown:
@@ -199,18 +203,6 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_1_right = 409
         servo_set_2_left = 409
         servo_set_2_right = 204
-
-        if flagUp:
-            wheel_1_backward_pwm = 3072  # переднее левое крутим назад
-            wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
-            wheel_3_backward_pwm = 3072  # заднее левое крутим назад
-            wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
-
-        elif flagDown:
-            wheel_1_fwd_pwm = 3072  # переднее левое крутим вперед
-            wheel_2_backward_pwm = 3072  # переднее правое крутим назад
-            wheel_3_fwd_pwm = 3072  # заднее правое крутим вперед
-            wheel_4_backward_pwm = 3072  # заднее правое крутим назад
 
 
     sc.fill(WHITE) # окошко - нужно?
