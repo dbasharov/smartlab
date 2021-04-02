@@ -242,19 +242,13 @@ while 1: # Запускаем общий цикл для всего - оптим
         # test_servo_min = test_servo_min + 1
         test_servo_pwm = test_servo_min
         # time.sleep(0.3)
-        print ("servo left")
+        print ("servo right")
 
     elif test_servo_right:
-        for i in range(test_servo_pwm, test_servo_max, 5):
-
         # test_servo_max = test_servo_max - 1
-            print (i)
-            test_servo_pwm = i
-            time.sleep(0.1)
-
-        # test_servo_pwm = test_servo_max
+        test_servo_pwm = test_servo_max
         # time.sleep(0.3)
-            print ("servo right")
+        print ("servo left")
 
         # test_servo_min = 154
         # test_servo_center = 322
