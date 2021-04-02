@@ -20,8 +20,8 @@ servo_set_2_right = servo_nul # установка серв задней оси 
 # тестирование плавного поворота серво
 test_servo_min = 154
 test_servo_center = 322
-test_servo_max = 491
-# test_servo_min = 204
+test_servo_max = 514
+# test_servo_min = 204 / 491
 # test_servo_center = 307
 # test_servo_max = 409
 test_servo_pwm = 0
@@ -238,10 +238,15 @@ while 1: # Запускаем общий цикл для всего - оптим
         print ("servo left")
 
     elif test_servo_right:
-        test_servo_max = test_servo_max + 1
+        # test_servo_max = test_servo_max + 1
         test_servo_pwm = test_servo_max
-        time.sleep(0.3)
+        # time.sleep(0.3)
         print ("servo right")
+
+        # test_servo_min = 154
+        # test_servo_center = 322
+        # test_servo_max = 491 фактически максимальное значение 514
+
 
 
 
