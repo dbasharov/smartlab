@@ -249,7 +249,8 @@ while 1: # Запускаем общий цикл для всего - оптим
 
         # test_servo_max = test_servo_max - 1
             print (i)
-            time.sleep(0.3)
+            test_servo_pwm = i
+            time.sleep(0.1)
 
         # test_servo_pwm = test_servo_max
         # time.sleep(0.3)
