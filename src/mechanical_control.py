@@ -237,7 +237,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_2_left = 409
         servo_set_2_right = 204
 
-    # тестирование плавного поворота серво
+    # тестирование значений ШИМ серво
     elif test_servo_left:
         # test_servo_min = test_servo_min + 1
         test_servo_pwm = test_servo_min
@@ -256,6 +256,12 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
 
+    # --------- проверка плавного хода
+    # for i in range(test_servo_pwm, test_servo_max, 5):
+    #     print (i)
+    #     test_servo_pwm = i
+    #     time.sleep(0.1)
+    # ---------
 
     sc.fill(WHITE) # окошко - нужно?
     pygame.draw.rect(sc, BLUE, (x, y, 10, 10)) # размер курсора - нужно?
