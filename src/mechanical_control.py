@@ -18,12 +18,14 @@ servo_set_2_right = servo_nul # установка серв задней оси 
 
 
 # тестирование плавного поворота серво
-test_servo_min = 70
-test_servo_center = 322
-test_servo_max = 514
-# test_servo_min = 204
-# test_servo_center = 307  154
-# test_servo_max = 409  491
+test_servo_min = 68 # 68 - минимальное значение сработки
+test_servo_center = 291 # - среднее положение между крайними значениями
+test_servo_max = 514 # 514 - максимальное значение сработки
+
+# значения из примеров, необходимо протестировать свои  серво на фактические значения
+# test_servo_min = 204  (154)
+# test_servo_center = 307  (322)
+# test_servo_max = 409  (491)
 test_servo_pwm = 0
 
 
