@@ -114,7 +114,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
                 # тестирование плавного поворота серво
                 test_servo_left = test_servo_right = False
-                test_servo_pwm = servo_nul
+                test_servo_pwm = test_servo_center
 
 
                 x = W // 2 # сброс координат курсора
