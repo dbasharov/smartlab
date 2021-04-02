@@ -236,15 +236,15 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     # тестирование плавного поворота серво
     elif test_servo_left:
-        # test_servo_min = test_servo_min - 1
+        test_servo_min = test_servo_min + 1
         test_servo_pwm = test_servo_min
-        # time.sleep(0.3)
+        time.sleep(0.3)
         print ("servo right")
 
     elif test_servo_right:
-        # test_servo_max = test_servo_max + 1
+        test_servo_max = test_servo_max - 1
         test_servo_pwm = test_servo_max
-        # time.sleep(0.3)
+        time.sleep(0.3)
         print ("servo left")
 
         # test_servo_min = 154
