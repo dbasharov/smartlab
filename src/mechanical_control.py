@@ -18,9 +18,9 @@ servo_set_2_right = servo_nul # установка серв задней оси 
 
 
 # тестирование плавного поворота серво
-test_servo_min = 68 # 68 - минимальное значение сработки
-test_servo_center = 291 # - среднее положение между крайними значениями
-test_servo_max = 514 # 514 - максимальное значение сработки
+test_servo_min = 68 # 68 - минимальное значение сработки - превышает угол 90
+test_servo_center = 295 # 291 - среднее (математическое) положение между крайними значениями, можно скорректировать для более точного совпадения с геометрией корпуса
+test_servo_max = 514 # 514 - максимальное значение сработки - превышает угол 90
 
 # значения из примеров, необходимо протестировать свои  серво на фактические значения
 # test_servo_min = 204  (154)
@@ -239,13 +239,13 @@ while 1: # Запускаем общий цикл для всего - оптим
         # test_servo_min = test_servo_min - 1
         test_servo_pwm = test_servo_min
         # time.sleep(0.3)
-        print ("servo left")
+        print ("servo right")
 
     elif test_servo_right:
         # test_servo_max = test_servo_max + 1
         test_servo_pwm = test_servo_max
         # time.sleep(0.3)
-        print ("servo right")
+        print ("servo left")
 
         # test_servo_min = 154
         # test_servo_center = 322
