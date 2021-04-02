@@ -240,7 +240,7 @@ while 1: # Запускаем общий цикл для всего - оптим
     elif test_servo_right:
         test_servo_max = test_servo_max + 1
         test_servo_pwm = test_servo_max
-        time.sleep(0.2)
+        time.sleep(0.3)
         print ("servo right")
 
 
