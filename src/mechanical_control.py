@@ -3,7 +3,7 @@ import tkinter
 import time
 import smbus
 import Adafruit_PCA9685
-from Sensors import all
+from Sensors import *
 
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
