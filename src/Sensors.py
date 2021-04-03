@@ -19,10 +19,10 @@ try:
         GPIO.output(TRIG,0)
 
     while GPIO.input(ECHO) == 0:
-        pass start = time.time()
+         start = time.time()
 
     while GPIO.input(ECHO) == 1:
-        pass stop = time.time()
+         stop = time.time()
 
         # Print distance to object in santimeters. Sound speed = 340 m/s
         print ("Distance = "),(stop - start) * 17000,"sm"
