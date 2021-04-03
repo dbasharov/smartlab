@@ -44,14 +44,17 @@ def distance():
 
 
 # if __name__ == '__main__':
-#     try:
-while True:
-    dist = distance()
-    print ("Measured Distance = %.1f cm" % dist)
+try:
+    while True:
+        dist = distance()
+        print ("Measured Distance = %.1f cm" % dist)
             # в print применен шаблон вывода данных, (метод format - сокращенно %)
             # .1 - количество знаков после запятой, f - Float - дробные значения
             # (могут быть d - числовое, s - строковое, i - целое числовое)
 
-    time.sleep(0.1)
+        time.sleep(0.1)
 
-GPIO.cleanup()
+        # Reset by pressing CTRL + C
+except KeyboardInterrupt:
+    print("Measurement stopped by User")
+    GPIO.cleanup()
