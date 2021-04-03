@@ -4,24 +4,6 @@ import time
 import smbus
 import Adafruit_PCA9685
 
-import RPi.GPIO as GPIO
-
-
-
-
-# GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
-
-# set GPIO Pins
-GPIO_TRIGGER = 23 # пин на передачу на датчик
-GPIO_ECHO = 24 # пин на прием с датчика, на нем меряем время возврата сигнала
-
-# set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT) # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
-GPIO.setup(GPIO_ECHO, GPIO.IN) # эхо делаем на прием
-
-
-
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
 
@@ -90,35 +72,6 @@ servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo
 
 # тестирование плавного поворота серво
 test_servo_left = test_servo_right = False
-
-
-def distance():
-    GPIO.setmode(GPIO.BCM)
-    # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
-
-    # устанавливаем триггер через 0.01ms в состояние LOW (False или 0)
-    time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
-
-    StartTime = time.time()  # время при отправке пакета
-    StopTime = time.time()  # время при приеме пакета
-
-    # сохраняем время старта
-    while GPIO.input(GPIO_ECHO) == 0:  # пока на эхо значение 0 записываем значение времени
-        StartTime = time.time()
-
-    # сохраняем время возвращения
-    while GPIO.input(GPIO_ECHO) == 1:  # пока на эхо значение 1 (возврат сигнала) записываем значение времени
-        StopTime = time.time()
-
-    # определяем разницу времени между стартом и возвращением
-    TimeElapsed = StopTime - StartTime  # определяем время прохождения сегнала от отправки до приема (проходит 2 расстояния - до объекта и обратно)
-    # время умножаем на скорость звука (34300 cm/s)
-    # и делим на 2, т.к. сигнал идет до препятствия, а затем возвращается
-    distance = (TimeElapsed * 34300) / 2
-
-    return distance
 
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
@@ -339,27 +292,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
 
-
-
-    # if __name__ == '__main__':
-
-
-    dist = distance()
-    print ("Measured Distance = %.1f cm" % dist)
-                # в print применен шаблон вывода данных, (метод format - сокращенно %)
-                # .1 - количество знаков после запятой, f - Float - дробные значения
-                # (могут быть d - числовое, s - строковое, i - целое числовое)
-
-    time.sleep(0.1)
-
-    GPIO.cleanup()
-
-
-
-
-
     # print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
 
     clock.tick(FPS)
-
 
