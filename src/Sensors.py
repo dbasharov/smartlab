@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-GPIO.cleanup()
+# GPIO.cleanup()
 
 GPIO.setmode(GPIO.BCM)
 TRIG = 23
@@ -8,7 +8,7 @@ ECHO = 24
 
 GPIO.setwarnings(False)
 
-GPIO.setup(TRIG, GPIO.OUT, initial=0)
+GPIO.setup(TRIG, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(ECHO, GPIO.IN)
 
 try:
