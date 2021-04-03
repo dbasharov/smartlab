@@ -8,7 +8,7 @@ ECHO = 24
 
 GPIO.setwarnings(False)
 
-GPIO.setup(TRIG, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setmode(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 
 try:
