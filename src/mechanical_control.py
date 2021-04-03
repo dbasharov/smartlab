@@ -1,7 +1,7 @@
 import pygame
 # import tkinter
 import time
-# import smbus
+import smbus
 import Adafruit_PCA9685
 
 import RPi.GPIO as GPIO
