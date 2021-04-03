@@ -310,11 +310,6 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
 
-    # print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
-
-    clock.tick(FPS)
-
-
     def distance():
         # set Trigger to HIGH
         GPIO.output(GPIO_TRIGGER, True)
@@ -358,4 +353,13 @@ while 1: # Запускаем общий цикл для всего - оптим
     except KeyboardInterrupt:
         print("Measurement stopped by User")
         GPIO.cleanup()
+
+
+
+
+
+    # print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
+
+    clock.tick(FPS)
+
 
