@@ -26,8 +26,8 @@ try:
 
         # Print distance to object in santimeters. Sound speed = 340 m/s
         # print ("Distance = "),(stop - start) * 17000,"sm"
-        print ("start time = "), start
-        print ("stop time = "), stop
+    print ("start time = "), start
+    print ("stop time = "), stop
 
 except KeyboardInterrupt:
 GPIO.cleanup()
