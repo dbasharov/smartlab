@@ -1,9 +1,9 @@
 import pygame
-# import tkinter
 import time
-# import smbus
 import Adafruit_PCA9685
 
+# import tkinter
+# import smbus
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
 
