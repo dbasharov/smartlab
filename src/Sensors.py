@@ -25,22 +25,21 @@ def distance():
     StartTime = time.time() # время при отправке пакета
     StopTime = time.time() # время при приеме пакета
 
-    # save StartTime
+    # сохраняем время старта
     while GPIO.input(GPIO_ECHO) == 0: # пока на эхо значение 0 записываем значение времени
         StartTime = time.time()
 
-    # save time of arrival
+    # сохраняем время возвращения
     while GPIO.input(GPIO_ECHO) == 1: # пока на эхо значение 1 (возврат сигнала) записываем значение времени
         StopTime = time.time()
 
-    # time difference between start and arrival
+    # определяем разницу времени между стартом и возвращением
     TimeElapsed = StopTime - StartTime # определяем время прохождения сегнала от отправки до приема (проходит 2 расстояния - до объекта и обратно)
     # время умножаем на скорость звука (34300 cm/s)
     # и делим на 2, т.к. сигнал идет до препятствия, а затем возвращается
     distance = (TimeElapsed * 34300) / 2
 
     return distance
-    print (StartTime)
 
 
 
@@ -48,7 +47,7 @@ if __name__ == '__main__':
     try:
         while True:
             dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
+            print ("Measured Distance = %f cm" % dist)
 
             time.sleep(0.1)
 
