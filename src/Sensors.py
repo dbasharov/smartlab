@@ -17,9 +17,9 @@ try:
         time.sleep(0.1)
 
         # Send a probe signal to the sensor. Signal should be 10 micro sec long.
-        GPIO.output(TRIG,1)
+        GPIO.output(TRIG,True)
         time.sleep(0.00001)
-        GPIO.output(TRIG,0)
+        GPIO.output(TRIG,False)
 
     while GPIO.input(ECHO) == 0:
         start = time.time()
