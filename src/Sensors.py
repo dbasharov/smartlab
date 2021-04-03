@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
-import time #GPIO.cleanup()
+import time
+GPIO.cleanup()
 
 GPIO.setmode(GPIO.BOARD)
 TRIG = 16
