@@ -93,6 +93,7 @@ test_servo_left = test_servo_right = False
 
 
 def distance():
+    GPIO.setmode(GPIO.BCM)
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
 
