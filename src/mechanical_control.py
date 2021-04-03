@@ -314,8 +314,6 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     clock.tick(FPS)
 
-    print (distance)
-
 
     def distance():
         # set Trigger to HIGH
