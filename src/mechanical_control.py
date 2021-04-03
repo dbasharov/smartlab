@@ -245,9 +245,9 @@ while 1: # Запускаем общий цикл для всего - оптим
         print ("servo left")
 
     elif test_servo_right:
-        # test_servo_max = test_servo_max - 1
+        test_servo_max = test_servo_max - 1
         test_servo_pwm = test_servo_max
-        # time.sleep(0.3)
+        time.sleep(0.3)
         print ("servo right")
 
         # test_servo_min = 154
