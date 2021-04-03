@@ -6,40 +6,41 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # set GPIO Pins
-GPIO_TRIGGER = 23
-GPIO_ECHO = 24
+GPIO_TRIGGER = 23 # пин на передачу на датчик
+GPIO_ECHO = 24 # пин на прием с датчика, на нем меряем время возврата сигнала
 
 # set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-GPIO.setup(GPIO_ECHO, GPIO.IN)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT) # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
+GPIO.setup(GPIO_ECHO, GPIO.IN) # эхо делаем на прием
 
 
 def distance():
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
 
-    # set Trigger after 0.01ms to LOW
+    # устанавливаем триггер через 0.01ms в состояние LOW (False или 0)
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
 
-    StartTime = time.time()
-    StopTime = time.time()
+    StartTime = time.time() # время при отправке пакета
+    StopTime = time.time() # время при приеме пакета
 
     # save StartTime
-    while GPIO.input(GPIO_ECHO) == 0:
+    while GPIO.input(GPIO_ECHO) == 0: # пока на эхо значение 0 записываем значение времени
         StartTime = time.time()
 
     # save time of arrival
-    while GPIO.input(GPIO_ECHO) == 1:
+    while GPIO.input(GPIO_ECHO) == 1: # пока на эхо значение 1 (возврат сигнала) записываем значение времени
         StopTime = time.time()
 
     # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
+    TimeElapsed = StopTime - StartTime # определяем время прохождения сегнала от отправки до приема (проходит 2 расстояния - до объекта и обратно)
+    # время умножаем на скорость звука (34300 cm/s)
+    # и делим на 2, т.к. сигнал идет до препятствия, а затем возвращается
     distance = (TimeElapsed * 34300) / 2
 
     return distance
+    print (StartTime)
 
 
 
@@ -48,6 +49,7 @@ if __name__ == '__main__':
         while True:
             dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
+
             time.sleep(0.1)
 
         # Reset by pressing CTRL + C
