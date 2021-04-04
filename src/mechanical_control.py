@@ -336,13 +336,13 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     dist = distance()
     if 10 < dist < 50:
-        flagUp = True
+        flagUp = False
         print ("Measured Distance = %d cm" % dist)
         # print ("Measured Distance = %.1f cm" % dist)
     if dist < 10:
-        flagUp = False
+        flagUp = True
     if dist > 50:
-        flagUp = False
+        flagUp = True
 
     # в print применен шаблон вывода данных, (метод format - сокращенно %)
     # .1 - количество знаков после запятой, f - Float - дробные значения
