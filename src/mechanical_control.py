@@ -334,17 +334,38 @@ while 1: # Запускаем общий цикл для всего - оптим
     pwm.set_pwm(14, 0, servo_set_2_left) # Серво 3 (задний левый, на задней оси)
     pwm.set_pwm(15, 0, servo_set_2_right) # Серво 4 (задний правый, на задней оси)
 
+
+
+
+# ----------------------- автоматический режим
+
     dist = distance()
     if dist <= 20:
-        trig_dist_1 = True
-        flagUp = trig_dist_1
+        # trig_dist_1 = True
+        # flagUp = trig_dist_1
         print ("Measured Distance = %d cm" % dist)
         # print ("Measured Distance = %.1f cm" % dist)
+
+        # плавное ускорение вперед
+        speedUp = speedUp + 20
+        if speedUp > 4095:
+            speedUp = 4095
+        wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
+
     if dist > 20:
-        trig_dist_2 = False
-        flagUp = trig_dist_2
+        # trig_dist_2 = False
+        # flagUp = trig_dist_2
         # flagUp = False
         print ("Measured Distance = %d cm" % dist)
+        wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
+
+
+
+
+
+# ----------------------- автоматический режим
+
+
 
     # в print применен шаблон вывода данных, (метод format - сокращенно %)
     # .1 - количество знаков после запятой, f - Float - дробные значения
