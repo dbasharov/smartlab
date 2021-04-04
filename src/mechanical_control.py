@@ -355,6 +355,7 @@ while 1: # Запускаем общий цикл для всего - оптим
     if dist <= 20:
         print ("Measured Distance = %d cm" % dist)
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
+        time.sleep(1)
 
         if 20 < dist < 50:
 
