@@ -124,7 +124,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     dist = distance()
     print ("Measured Distance = %.1f cm" % dist)
-    if dist >20:
+    if dist > 20:
         flagUp = True
     else:
         flagUp = False
