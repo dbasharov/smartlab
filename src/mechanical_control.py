@@ -357,7 +357,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
         time.sleep(1)
 
-        if 20 < dist < 50:
+        if dist < 50:
 
             speedUp = speedUp + 20
             if speedUp > 4095:
