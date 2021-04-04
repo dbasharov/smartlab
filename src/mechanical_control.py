@@ -51,8 +51,6 @@ def distance():
 
     return distance
 
-dist = distance()
-
 # 1 End --------------- Работа с ультразвуковым датчиком
 
 
@@ -336,8 +334,8 @@ while 1: # Запускаем общий цикл для всего - оптим
     pwm.set_pwm(14, 0, servo_set_2_left) # Серво 3 (задний левый, на задней оси)
     pwm.set_pwm(15, 0, servo_set_2_right) # Серво 4 (задний правый, на задней оси)
 
-
-    if 10 < dist < 50:
+    dist = distance()
+    if dist in distance() > 10 < 50:
         print ("Measured Distance = %.1f cm" % dist)
     # в print применен шаблон вывода данных, (метод format - сокращенно %)
     # .1 - количество знаков после запятой, f - Float - дробные значения
