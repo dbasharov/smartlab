@@ -206,6 +206,8 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_1_left = 204
         servo_set_1_right = 204
 
+    elif 10 < dist < 50:
+        flagUp = True
 
     # все вперед
     elif flagUp:
