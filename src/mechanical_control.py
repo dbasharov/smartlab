@@ -125,8 +125,8 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
 
-    for distance in distance():
-        print (distance)
+
+    print (distance)
 
 
     for event in pygame.event.get():
