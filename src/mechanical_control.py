@@ -335,14 +335,13 @@ while 1: # Запускаем общий цикл для всего - оптим
     pwm.set_pwm(15, 0, servo_set_2_right) # Серво 4 (задний правый, на задней оси)
 
     dist = distance()
-    if 10 < dist < 50:
-        flagUp = False
+    if dist < 20:
+        flagUp = True
         print ("Measured Distance = %d cm" % dist)
         # print ("Measured Distance = %.1f cm" % dist)
-    if dist < 10:
-        flagUp = True
-    if dist > 50:
-        flagUp = True
+    if dist > 21:
+        flagUp = False
+        print ("Measured Distance = %d cm" % dist)
 
     # в print применен шаблон вывода данных, (метод format - сокращенно %)
     # .1 - количество знаков после запятой, f - Float - дробные значения
