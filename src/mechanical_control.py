@@ -206,8 +206,6 @@ while 1: # Запускаем общий цикл для всего - оптим
         servo_set_1_left = 204
         servo_set_1_right = 204
 
-    elif dist < 50:
-        flagUp = True
 
     # все вперед
     elif flagUp:
@@ -338,6 +336,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     dist = distance()
     if 10 < dist < 50:
+        flagUp = True
         print ("Measured Distance = %d cm" % dist)
         # print ("Measured Distance = %.1f cm" % dist)
     # в print применен шаблон вывода данных, (метод format - сокращенно %)
