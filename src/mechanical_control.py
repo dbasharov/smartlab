@@ -124,7 +124,10 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     dist = distance()
     print ("Measured Distance = %.1f cm" % dist)
-
+    if dist >20:
+        flagUp = True
+    else:
+        flagUp = False
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # Выход по какому условию? Нужен?
