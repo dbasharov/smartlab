@@ -341,7 +341,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         print ("Measured Distance = %d cm" % dist)
         # print ("Measured Distance = %.1f cm" % dist)
     if dist > 20:
-        trig_dist_2 = True
+        trig_dist_2 = False
         flagUp = trig_dist_2
         # flagUp = False
         print ("Measured Distance = %d cm" % dist)
