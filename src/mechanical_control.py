@@ -1,14 +1,61 @@
-import pygame
+import pygame # для работы с клавиатурой
 import time
-import Adafruit_PCA9685
-
-
-
+import Adafruit_PCA9685 # для работы с PCA9685 - ШИМ-контроллер
+import RPi.GPIO as GPIO # для работы с GPIO
 
 # import tkinter
 # import smbus
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
+
+
+# GPIO Mode (BOARD / BCM)
+GPIO.setmode(GPIO.BCM)
+
+
+# 1 Start --------------- Работа с ультразвуковым датчиком
+
+# set GPIO Pins
+GPIO_TRIGGER = 23 # пин на передачу на датчик
+GPIO_ECHO = 24 # пин на прием с датчика, на нем меряем время возврата сигнала
+
+# set GPIO direction (IN / OUT)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT) # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
+GPIO.setup(GPIO_ECHO, GPIO.IN) # эхо делаем на прием
+
+
+def distance():
+    # set Trigger to HIGH
+    GPIO.output(GPIO_TRIGGER, True)
+
+    # устанавливаем триггер через 0.01ms в состояние LOW (False или 0)
+    time.sleep(0.00001)
+    GPIO.output(GPIO_TRIGGER, False)
+
+    StartTime = time.time() # время при отправке пакета
+    StopTime = time.time() # время при приеме пакета
+
+    # сохраняем время старта
+    while GPIO.input(GPIO_ECHO) == 0: # пока на эхо значение 0 записываем значение времени
+        StartTime = time.time()
+
+    # сохраняем время возвращения
+    while GPIO.input(GPIO_ECHO) == 1: # пока на эхо значение 1 (возврат сигнала) записываем значение времени
+        StopTime = time.time()
+
+    # определяем разницу времени между стартом и возвращением
+    TimeElapsed = StopTime - StartTime # определяем время прохождения сегнала от отправки до приема (проходит 2 расстояния - до объекта и обратно)
+    # время умножаем на скорость звука (34300 cm/s)
+    # и делим на 2, т.к. сигнал идет до препятствия, а затем возвращается
+    distance = (TimeElapsed * 34300) / 2
+
+    return distance
+
+# 1 End --------------- Работа с ультразвуковым датчиком
+
+
+
+
 
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # Частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
@@ -286,6 +333,14 @@ while 1: # Запускаем общий цикл для всего - оптим
     pwm.set_pwm(13, 0, servo_set_1_right) # Серво 2 (передний правый, на передней оси)
     pwm.set_pwm(14, 0, servo_set_2_left) # Серво 3 (задний левый, на задней оси)
     pwm.set_pwm(15, 0, servo_set_2_right) # Серво 4 (задний правый, на задней оси)
+
+    dist = distance()
+    print ("Measured Distance = %.1f cm" % dist)
+    # в print применен шаблон вывода данных, (метод format - сокращенно %)
+    # .1 - количество знаков после запятой, f - Float - дробные значения
+    # (могут быть d - числовое, s - строковое, i - целое числовое)
+
+    time.sleep(0.1)
 
 
 
