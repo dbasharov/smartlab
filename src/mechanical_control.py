@@ -122,11 +122,8 @@ test_servo_left = test_servo_right = False
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
 
-
-
-
-
-    print (distance())
+    dist = distance()
+    print ("Measured Distance = %.1f cm" % dist)
 
 
     for event in pygame.event.get():
