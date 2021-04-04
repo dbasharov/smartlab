@@ -351,6 +351,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         if speedUp > 4095:
             speedUp = 4095
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
+        print (wheel_1_fwd_pwm)
 
     if dist > 20:
         # trig_dist_2 = False
