@@ -346,7 +346,6 @@ while 1: # Запускаем общий цикл для всего - оптим
         print ("Measured Distance = %d cm" % dist)
         # print ("Measured Distance = %.1f cm" % dist)
 
-        # плавное ускорение вперед
         speedUp = speedUp + 20
         if speedUp > 4095:
             speedUp = 4095
@@ -357,17 +356,17 @@ while 1: # Запускаем общий цикл для всего - оптим
         print ("Measured Distance = %d cm" % dist)
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
 
-    if 20 < dist < 50:
+        if 20 < dist < 50:
 
-        speedUp = speedUp + 20
-        if speedUp > 4095:
-            speedUp = 4095
-        wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
-        print (wheel_1_backward_pwm)
+            speedUp = speedUp + 20
+            if speedUp > 4095:
+                speedUp = 4095
+            wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = speedUp
+            print (wheel_1_backward_pwm)
 
-    if dist >= 50:
-        print ("Measured Distance = %d cm" % dist)
-        wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = 0
+        if dist >= 50:
+            print ("Measured Distance = %d cm" % dist)
+            wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = 0
 
 
 
