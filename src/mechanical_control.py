@@ -336,7 +336,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     dist = distance()
     if dist > 10:
-        print ("Measured Distance = %.1 cm" % dist)
+        print ("Measured Distance = %d cm" % dist)
     # в print применен шаблон вывода данных, (метод format - сокращенно %)
     # .1 - количество знаков после запятой, f - Float - дробные значения
     # (могут быть d - числовое, s - строковое, i - целое числовое)
