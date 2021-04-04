@@ -340,7 +340,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 # ----------------------- автоматический режим
 
     dist = distance()
-    if dist <= 20:
+    if dist >= 20:
         # trig_dist_1 = True
         # flagUp = trig_dist_1
         print ("Measured Distance = %d cm" % dist)
@@ -354,9 +354,6 @@ while 1: # Запускаем общий цикл для всего - оптим
         print (wheel_1_fwd_pwm)
 
     if dist > 20:
-        # trig_dist_2 = False
-        # flagUp = trig_dist_2
-        # flagUp = False
         print ("Measured Distance = %d cm" % dist)
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
 
