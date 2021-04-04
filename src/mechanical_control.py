@@ -353,7 +353,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
         print (wheel_1_fwd_pwm)
 
-    if dist > 20:
+    if dist < 20:
         print ("Measured Distance = %d cm" % dist)
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
 
