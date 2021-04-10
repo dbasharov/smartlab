@@ -312,11 +312,11 @@ while 1: # Запускаем общий цикл для всего - оптим
             speedUp = 4095
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
         print (wheel_1_fwd_pwm)
-    #
-    # if  dist_1 <= 30:
-    #     print ("Measured Distance = %d cm" % dist_1)
-    #     wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
-    #     time.sleep(1)
+
+    if  dist_1 <= 30:
+        print ("Measured Distance = %d cm" % dist_1)
+        wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
+        time.sleep(1)
 
         # range (200)
         # print ("Measured Distance = %d cm" % dist_1)
