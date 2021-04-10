@@ -1,20 +1,7 @@
-# Libraries
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO # для работы с GPIO
 
-# GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
-
-# set GPIO Pins
-GPIO_TRIGGER = 23 # пин на передачу на датчик
-GPIO_ECHO = 24 # пин на прием с датчика, на нем меряем время возврата сигнала
-
-# set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT) # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
-GPIO.setup(GPIO_ECHO, GPIO.IN) # эхо делаем на прием
-
-
-def distance():
+def distance(GPIO_TRIGGER, GPIO_ECHO):
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
 
@@ -37,24 +24,53 @@ def distance():
     TimeElapsed = StopTime - StartTime # определяем время прохождения сегнала от отправки до приема (проходит 2 расстояния - до объекта и обратно)
     # время умножаем на скорость звука (34300 cm/s)
     # и делим на 2, т.к. сигнал идет до препятствия, а затем возвращается
-    distance = (TimeElapsed * 34300) / 2
+    dist = (TimeElapsed * 34300) / 2
 
-    return distance
+    return dist
+
+# 1 End --------------- Работа с ультразвуковым датчиком
+
+def init_sensors():
+    """
+    Инициализирует все сенсоры
+    """
+
+    # GPIO Mode (BOARD / BCM)
+    GPIO.setmode(GPIO.BCM)
+
+    print ("Инициализируем все сенсоры")
+    init_ultrasonic_sensors()
+
+
+def init_ultrasonic_sensors():
+    """
+    Инициализируем ультразвуковые сенсоры
+
+    """
+    print ("Инициализируем ультразвуковой сенсор")
+
+    init_ultrasonic_sensor(23, 24) # GPIO_TRIGGER = 23  # пин на передачу на датчик, GPIO_ECHO = 24 пин на прием с датчика, на нем меряем время возврата сигнала
+
+    # init_ultrasonic_sensor(17, 18)
+
+
+def init_ultrasonic_sensor(GPIO_TRIGGER, GPIO_ECHO): # GPIO_TRIGGER - пин на передачу на датчик, GPIO_ECHO - пин на прием с датчика, на нем меряем время возврата сигнала
+    """
+    ораполрплорп
+    :param GPIO_TRIGGER:
+    :param GPIO_ECHO:
+    """
+    print ("Инициализируем ультразвуковой датчик")
 
 
 
-if __name__ == '__main__':
-    try:
-        while True:
-            dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
-            # в print применен шаблон вывода данных, (метод format - сокращенно %)
-            # .1 - количество знаков после запятой, f - Float - дробные значения
-            # (могут быть d - числовое, s - строковое, i - целое числовое)
 
-            time.sleep(0.1)
 
-        # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        print("Measurement stopped by User")
-        GPIO.cleanup()
+
+    # set GPIO Pins
+
+    # set GPIO direction (IN / OUT)
+    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)  # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
+    GPIO.setup(GPIO_ECHO, GPIO.IN)  # эхо делаем на прием
+
+

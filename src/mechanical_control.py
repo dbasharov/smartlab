@@ -2,60 +2,14 @@ import pygame # для работы с клавиатурой
 import time
 import Adafruit_PCA9685 # для работы с PCA9685 - ШИМ-контроллер
 import RPi.GPIO as GPIO # для работы с GPIO
+from Sensors import distance, init_sensors
 
 # import tkinter
 # import smbus
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
 
-
-# GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
-
-
-# 1 Start --------------- Работа с ультразвуковым датчиком
-
-# set GPIO Pins
-GPIO_TRIGGER = 23 # пин на передачу на датчик
-GPIO_ECHO = 24 # пин на прием с датчика, на нем меряем время возврата сигнала
-
-# set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT) # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
-GPIO.setup(GPIO_ECHO, GPIO.IN) # эхо делаем на прием
-
-
-def distance():
-    # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
-
-    # устанавливаем триггер через 0.01ms в состояние LOW (False или 0)
-    time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
-
-    StartTime = time.time() # время при отправке пакета
-    StopTime = time.time() # время при приеме пакета
-
-    # сохраняем время старта
-    while GPIO.input(GPIO_ECHO) == 0: # пока на эхо значение 0 записываем значение времени
-        StartTime = time.time()
-
-    # сохраняем время возвращения
-    while GPIO.input(GPIO_ECHO) == 1: # пока на эхо значение 1 (возврат сигнала) записываем значение времени
-        StopTime = time.time()
-
-    # определяем разницу времени между стартом и возвращением
-    TimeElapsed = StopTime - StartTime # определяем время прохождения сегнала от отправки до приема (проходит 2 расстояния - до объекта и обратно)
-    # время умножаем на скорость звука (34300 cm/s)
-    # и делим на 2, т.к. сигнал идет до препятствия, а затем возвращается
-    distance = (TimeElapsed * 34300) / 2
-
-    return distance
-
-# 1 End --------------- Работа с ультразвуковым датчиком
-
-
-
-
+init_sensors()
 
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # Частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
@@ -338,26 +292,34 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
 # ----------------------- автоматический режим
-    # dist = distance()
-    # if dist > 30:
-    #     # trig_dist_1 = True
-    #     # flagUp = trig_dist_1
-    #     print ("Measured Distance = %d cm" % dist)
-    #     # print ("Measured Distance = %.1f cm" % dist)
+    # Датчик расстояния УЗ №1
+    trigg_1 = 23
+    echo_1 = 24
+
+
+    dist_1 = distance(trigg_1, echo_1) #GPIO_TRIGGER, GPIO_ECHO - присвоение значений GPIO
+
+    # dist_2 = distance(trigg_2, echo_2) #GPIO_TRIGGER, GPIO_ECHO - присвоение значений GPIO
+
+    if dist_1 > 30:
+        # trig_dist_1 = True
+        # flagUp = trig_dist_1
+        print ("Measured Distance = %d cm" % dist_1)
+        # print ("Measured Distance = %.1f cm" % dist_1)
+
+        speedUp = speedUp + 20
+        if speedUp > 4095:
+            speedUp = 4095
+        wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
+        print (wheel_1_fwd_pwm)
     #
-    #     speedUp = speedUp + 20
-    #     if speedUp > 4095:
-    #         speedUp = 4095
-    #     wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = speedUp
-    #     print (wheel_1_fwd_pwm)
-    #
-    # if  dist <= 30:
-    #     print ("Measured Distance = %d cm" % dist)
+    # if  dist_1 <= 30:
+    #     print ("Measured Distance = %d cm" % dist_1)
     #     wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
     #     time.sleep(1)
 
         # range (200)
-        # print ("Measured Distance = %d cm" % dist)
+        # print ("Measured Distance = %d cm" % dist_1)
         # speedUp = speedUp_null
         # speedUp = speedUp + 20
         # if speedUp > 4095:
@@ -366,7 +328,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         # print (wheel_1_backward_pwm)
 
 
-    # if dist >= 50:
+    # if dist_1 >= 50:
     #
     #     wheel_1_backward_pwm = wheel_2_backward_pwm = wheel_3_backward_pwm = wheel_4_backward_pwm = 0
     #     print (wheel_1_backward_pwm)
