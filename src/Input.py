@@ -38,7 +38,7 @@ def get_keyboard_values():
     keys['servo_mode_6'] = False
     keys['servo_mode_7'] = False
     keys['test_servo_left'] = False
-    keys['test_servo_Right'] = False
+    keys['test_servo_right'] = False
     keys['reset_position'] = False
     keys['stop_position'] = False
 
@@ -76,7 +76,7 @@ def get_keyboard_values():
                 keys['test_servo_left'] = True
 
             elif event.key == pygame.K_9:
-                keys['test_servo_Right'] = True
+                keys['test_servo_right'] = True
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 keys['reset_position'] = True
