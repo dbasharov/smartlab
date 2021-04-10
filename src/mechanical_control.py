@@ -3,12 +3,13 @@ import time
 import Adafruit_PCA9685 # для работы с PCA9685 - ШИМ-контроллер
 import RPi.GPIO as GPIO # для работы с GPIO
 from Sensors import distance, init_sensors # должно быть в старте, когда старт будет доделан
+from Input import get_keyboard_values
 
 # import tkinter
 # import smbus
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
-from src.input import get_keyboard_values
+
 
 init_sensors()
 
