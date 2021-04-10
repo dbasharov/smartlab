@@ -307,5 +307,5 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     # print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
 
-    clock.tick(FPS)
+    # clock.tick(FPS)
 
