@@ -3,7 +3,7 @@ import time
 import Adafruit_PCA9685 # для работы с PCA9685 - ШИМ-контроллер
 import RPi.GPIO as GPIO # для работы с GPIO
 from Sensors import distance, init_sensors # должно быть в старте, когда старт будет доделан
-from Input import get_keyboard_values
+from Input import get_keyboard_values, init_input
 
 # import tkinter
 # import smbus
@@ -12,6 +12,7 @@ from Input import get_keyboard_values
 
 
 init_sensors()
+init_input()
 
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # Частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
