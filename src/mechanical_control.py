@@ -1,13 +1,14 @@
-import pygame # для работы с клавиатурой
+
 import time
 import Adafruit_PCA9685 # для работы с PCA9685 - ШИМ-контроллер
 import RPi.GPIO as GPIO # для работы с GPIO
-from Sensors import distance, init_sensors
+from Sensors import distance, init_sensors # должно быть в старте, когда старт будет доделан
 
 # import tkinter
 # import smbus
 #i2cBus = smbus.SMBus(1)
 #pca9685 = PCA9685.PCA9685(i2cBus)
+from src.input import get_keyboard_values
 
 init_sensors()
 
@@ -51,26 +52,9 @@ speedUp = 2048 # установка нижнего значения скорос
 speedUp_null = 2048
 
 
-pygame.init() # инициализация опроса клавиатуры через Pygame
+
  
-W = 200 # установка размера графического окна, нужно ли - удалить?
-H = 200
- 
-sc = pygame.display.set_mode((W, H)) # переменная инициализации окна - имя переменной устанавливаем сами
- 
-WHITE = (255, 255, 255) # задание цветов графического окна
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
- 
-FPS = 60   # обновление окна
-clock = pygame.time.Clock() # переменная цикла опроса клавиатуры
- 
-x = W // 2 # установка координат центра окна для установки курсора. Проверить, надо? Выкинуть
-y = H // 2
-speed = 1 # шаг перемещения курсора,  Проверить, надо? Выкинуть
- 
-flagUp = flagDown = flagLeft = flagRight = False # Установка "флагов" (из механики Pygame) по типу чекбоксов, свои переменные и присвение им значение false. Далее используются для управления стрелками с клавиатуры.
+
 servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False # Тоже самое, только управление цифрами с клавиатуры.
 
 
@@ -79,73 +63,40 @@ test_servo_left = test_servo_right = False
 
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT: # Выход по какому условию? Нужен?
-            exit()
-        elif event.type == pygame.KEYDOWN:# Проверка нажатия кнопки
-            if event.key == pygame.K_LEFT: # Обозначение клавиш из Pygame
-                flagLeft = True # поворот передней оси влево
-            elif event.key == pygame.K_RIGHT:
-                flagRight = True # поворот передней оси вправо
-            elif event.key == pygame.K_UP:
-                flagUp = True # все колеса вперед
-            elif event.key == pygame.K_DOWN:
-                flagDown = True # все колеса назад
-            elif event.key == pygame.K_1:
-                servo_mode_1 = True # левый танковый разворот
-            elif event.key == pygame.K_2:
-                servo_mode_2 = True # правый танковый разворот
-            elif event.key == pygame.K_3:
-                servo_mode_3 = True # параллельная парковка, обе оси влево
-            elif event.key == pygame.K_4:
-                servo_mode_4 = True # параллельная парковка, обе оси вправо
-            elif event.key == pygame.K_5:
-                servo_mode_5 = True
-            elif event.key == pygame.K_6:
-                servo_mode_6 = True
-            elif event.key == pygame.K_7:
-                servo_mode_7 = True
 
-            # тестирование плавного поворота серво
-            elif event.key == pygame.K_8:
-                test_servo_left = True
+    flagLeft, flagRight, flagUp, flagDown, servo_mode_1, servo_mode_2, servo_mode_3, servo_mode_4, servo_mode_5, servo_mode_6, servo_mode_7, test_servo_left, test_servo_right, reset_position, stop_position = get_keyboard_values()
 
-            elif event.key == pygame.K_9:
-                test_servo_right = True
+    if reset_position:
+        flagUp = flagDown = flagLeft = flagRight = False
+        servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
+        servo_set_1_left = servo_nul  # установка серв в исходное положение
+        servo_set_1_right = servo_nul  # установка серв в исходное положение
+        servo_set_2_left = servo_nul  # установка серв в исходное положение
+        servo_set_2_right = servo_nul  # установка серв в исходное положение
 
-            if event.key in [pygame.K_SPACE]:  # общий стоп
-                flagUp = flagDown = flagLeft = flagRight = False
-                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
-                servo_set_1_left = servo_nul  # установка серв в исходное положение
-                servo_set_1_right = servo_nul  # установка серв в исходное положение
-                servo_set_2_left = servo_nul  # установка серв в исходное положение
-                servo_set_2_right = servo_nul  # установка серв в исходное положение
+        # тестирование плавного поворота серво
+        test_servo_left = test_servo_right = False
+        test_servo_pwm = test_servo_center
 
-                # тестирование плавного поворота серво
-                test_servo_left = test_servo_right = False
-                test_servo_pwm = test_servo_center
+        # x = W // 2  # сброс координат курсора
+        # y = H // 2  # сброс координат курсора
 
 
-                x = W // 2 # сброс координат курсора
-                y = H // 2 # сброс координат курсора
+    if stop_position:
+        flagUp = flagDown = flagLeft = flagRight = False
+        servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
+        wheel_1_fwd_pwm = 0
+        wheel_1_backward_pwm = 0
+        wheel_2_fwd_pwm = 0
+        wheel_2_backward_pwm = 0
+        wheel_3_fwd_pwm = 0
+        wheel_3_backward_pwm = 0
+        wheel_4_fwd_pwm = 0
+        wheel_4_backward_pwm = 0
+        speedUp = 2048
 
-        elif event.type == pygame.KEYUP: # проверка отжатия кнопки
-            if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
-                flagUp = flagDown = flagLeft = flagRight = False
-                servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4  = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
-                wheel_1_fwd_pwm = 0
-                wheel_1_backward_pwm = 0
-                wheel_2_fwd_pwm = 0
-                wheel_2_backward_pwm = 0
-                wheel_3_fwd_pwm = 0
-                wheel_3_backward_pwm = 0
-                wheel_4_fwd_pwm = 0
-                wheel_4_backward_pwm = 0
-                speedUp = 2048
-
-                # тестирование плавного поворота серво
-                test_servo_left = test_servo_right = False
-
+        # тестирование плавного поворота серво
+        test_servo_left = test_servo_right = False
 
     # Если была нажата кнопка "влево" (ПРОВЕРКА сосстояния - если flagLeft = true), то присваиваем значения переменным, отвечающим за положение серво.
 
