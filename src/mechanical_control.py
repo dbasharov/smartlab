@@ -56,18 +56,19 @@ speedUp_null = 2048
 
  
 
-servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False # Тоже самое, только управление цифрами с клавиатуры.
+# servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False # Тоже самое, только управление цифрами с клавиатуры.
 
 
 # тестирование плавного поворота серво
-test_servo_left = test_servo_right = False
+# test_servo_left = test_servo_right = False
 
 
 while 1: # Запускаем общий цикл для всего - оптимизировать?
 
-    flagLeft, flagRight, flagUp, flagDown, servo_mode_1, servo_mode_2, servo_mode_3, servo_mode_4, servo_mode_5, servo_mode_6, servo_mode_7, test_servo_left, test_servo_right, reset_position, stop_position = get_keyboard_values()
+    # flagLeft, flagRight, flagUp, flagDown, servo_mode_1, servo_mode_2, servo_mode_3, servo_mode_4, servo_mode_5, servo_mode_6, servo_mode_7, test_servo_left, test_servo_right, reset_position, stop_position = get_keyboard_values()
+    keys = get_keyboard_values()
 
-    if reset_position:
+    if keys['reset_position']:
         flagUp = flagDown = flagLeft = flagRight = False
         servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
         servo_set_1_left = servo_nul  # установка серв в исходное положение
@@ -83,7 +84,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         # y = H // 2  # сброс координат курсора
 
 
-    if stop_position:
+    if keys['stop_position']:
         flagUp = flagDown = flagLeft = flagRight = False
         servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
         wheel_1_fwd_pwm = 0
@@ -102,19 +103,19 @@ while 1: # Запускаем общий цикл для всего - оптим
     # Если была нажата кнопка "влево" (ПРОВЕРКА сосстояния - если flagLeft = true), то присваиваем значения переменным, отвечающим за положение серво.
 
     # поворот серв передней оси налево
-    if flagLeft:
+    if keys['flagLeft']:
         servo_set_1_left = 409
         servo_set_1_right = 409
 
 
     # поворот серв передней оси направо
-    elif flagRight:
+    elif keys['flagRight']:
         servo_set_1_left = 204
         servo_set_1_right = 204
 
 
     # все вперед
-    elif flagUp:
+    elif keys['flagUp']:
         # y -= speed # перемещение курсора в графическом окне
         # фиксированная скорость 4095 - максимум
         # wheel_1_fwd_pwm = 4095
@@ -130,7 +131,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
     # все назад
-    elif flagDown:
+    elif keys['flagDown']:
         # y += speed
         # фиксированная скорость 4095 - максимум
         # wheel_1_backward_pwm = 4095
@@ -147,7 +148,7 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     # при развороте устанавливаем скорость поменьше (через ШИМ) (максимально - 4095 - постоянная прямая сигнала)
 
-    elif servo_mode_1: # левый танковый разворот
+    elif keys['servo_mode_1']: # левый танковый разворот
         # x -= speed # изменение координаты курора в окне - "-1" - на шаг speed - задан выше (=1). То есть х = х-1 (х уменьшить на один). Х - это половина размера окна - оптимизировать или удалить всю графику? Может быть оставить для отображения положения, передвижения, состояния платформы.
         wheel_1_backward_pwm = 3072  # переднее левое крутим назад
         wheel_2_fwd_pwm = 3072  # переднее правое крутим вперед
@@ -155,7 +156,7 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_4_fwd_pwm = 3072  # заднее правое крутим вперед
 
 
-    elif servo_mode_2: # правый танковый разворот
+    elif keys['servo_mode_2']: # правый танковый разворот
         # x += speed
         wheel_1_fwd_pwm = 3072  # переднее левое крутим вперед
         wheel_2_backward_pwm = 3072  # переднее правое крутим назад
@@ -163,44 +164,44 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_4_backward_pwm = 3072  # заднее правое крутим назад
 
 
-    elif servo_mode_3: # параллельная парковка, обе оси влево
+    elif keys['servo_mode_3']: # параллельная парковка, обе оси влево
         servo_set_1_left = 409
         servo_set_1_right = 409
         servo_set_2_left = 409
         servo_set_2_right = 409
 
-    elif servo_mode_4: # параллельная парковка, обе оси вправо
+    elif keys['servo_mode_4']: # параллельная парковка, обе оси вправо
         servo_set_1_left = 204
         servo_set_1_right = 204
         servo_set_2_left = 204
         servo_set_2_right = 204
 
-    elif servo_mode_5: # движение по окружности вокруг центра против часовой стрелки
+    elif keys['servo_mode_5']: # движение по окружности вокруг центра против часовой стрелки
         servo_set_1_left = 409
         servo_set_1_right = 409
         servo_set_2_left = 204
         servo_set_2_right = 204
 
-    elif servo_mode_6: # # движение по окружности вокруг центра по часовой стрелке
+    elif keys['servo_mode_6']: # # движение по окружности вокруг центра по часовой стрелке
         servo_set_1_left = 204
         servo_set_1_right = 204
         servo_set_2_left = 409
         servo_set_2_right = 409
 
-    elif servo_mode_7: # # движение на месте вокруг своего центра, после поворота серв управляем танковым разворотом
+    elif keys['servo_mode_7']: # # движение на месте вокруг своего центра, после поворота серв управляем танковым разворотом
         servo_set_1_left = 204
         servo_set_1_right = 409
         servo_set_2_left = 409
         servo_set_2_right = 204
 
     # тестирование значений ШИМ серво
-    elif test_servo_left:
+    elif keys['test_servo_left']:
         # test_servo_min = test_servo_min - 1
         test_servo_pwm = test_servo_min
         # time.sleep(0.2)
         print ("servo left")
 
-    elif test_servo_right:
+    elif keys['test_servo_right']:
         # test_servo_max = test_servo_max + 1
         test_servo_pwm = test_servo_max
         # time.sleep(0.2)
