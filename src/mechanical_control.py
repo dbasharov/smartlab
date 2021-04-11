@@ -260,10 +260,12 @@ try:
 
         # dist_2 = distance(trigg_2, echo_2) #GPIO_TRIGGER, GPIO_ECHO - присвоение значений GPIO
 
+        print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
+
         if dist_1 > 30:
             # trig_dist_1 = True
             # flagUp = trig_dist_1
-            print ("Measured Distance = %d cm" % dist_1)
+            print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
             # print ("Measured Distance = %.1f cm" % dist_1)
 
             speedUp = speedUp + 20
@@ -273,7 +275,7 @@ try:
             print (wheel_1_fwd_pwm)
 
         if  dist_1 <= 30:
-            print ("Measured Distance = %d cm" % dist_1)
+            print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
             wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
             time.sleep(1)
 
