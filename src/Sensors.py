@@ -1,6 +1,9 @@
 import time
 import RPi.GPIO as GPIO # для работы с GPIO
 
+
+GPIO.setwarnings(False)
+
 def distance(GPIO_TRIGGER, GPIO_ECHO):
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)

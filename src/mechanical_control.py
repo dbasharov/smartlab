@@ -1,8 +1,11 @@
 
-import time
-import Adafruit_PCA9685 # для работы с PCA9685 - ШИМ-контроллер
-import RPi.GPIO as GPIO # для работы с GPIO
-from Sensors import distance, init_sensors # должно быть в старте, когда старт будет доделан
+import time                                 # Импортируем класс для работы со временем
+import sys, traceback                       # Импортируем библиотеки для обработки исключений
+import Adafruit_PCA9685                     # для работы с PCA9685 - ШИМ-контроллер
+import RPi.GPIO as GPIO                     # Импортируем библиотеку по работе с GPIO
+
+
+from Sensors import distance, init_sensors  # должно быть в старте, когда старт будет доделан
 from Input import get_keyboard_values, init_input
 
 # import tkinter
@@ -69,22 +72,25 @@ while 1: # Запускаем общий цикл для всего - оптим
     # flagLeft, flagRight, flagUp, flagDown, servo_mode_1, servo_mode_2, servo_mode_3, servo_mode_4, servo_mode_5, servo_mode_6, servo_mode_7, test_servo_left, test_servo_right, reset_position, stop_position = get_keyboard_values()
     keys = get_keyboard_values()
 
+    # Если нажат пробел, то устанавливаем все серво в исходное положение
     if keys['reset_position']:
-        flagUp = flagDown = flagLeft = flagRight = False
+        flagUp = flagDown = flagLeft = flagRight = False # проверить flagUp и flagDown, м.б. убрать в другое место или совсем, т.к. они определяют состояние двигателей, а не серво, а двигатели останавливаются по отжатию клавиш управления
         servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
         servo_set_1_left = servo_nul  # установка серв в исходное положение
         servo_set_1_right = servo_nul  # установка серв в исходное положение
         servo_set_2_left = servo_nul  # установка серв в исходное положение
         servo_set_2_right = servo_nul  # установка серв в исходное положение
 
-        # тестирование плавного поворота серво
+        # тестирование поворота серво - для определения крайних значений конкретных серво
         test_servo_left = test_servo_right = False
         test_servo_pwm = test_servo_center
 
         # x = W // 2  # сброс координат курсора
         # y = H // 2  # сброс координат курсора
 
-
+    # по отжатию клавиш управления останавливаем двигатели, приводим значение PWM к исходному
+    # для обеспечения плавного ускорения при следующем нажатии клавиш управления и обнуляем состояние серв
+    # для недопущения "наслоения" их состояний при выборе других режимов,
     if keys['stop_position']:
         flagUp = flagDown = flagLeft = flagRight = False
         servo_mode_1 = servo_mode_2 = servo_mode_3 = servo_mode_4 = servo_mode_5 = servo_mode_6 = servo_mode_7 = False
@@ -270,6 +276,11 @@ while 1: # Запускаем общий цикл для всего - оптим
         wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
         time.sleep(1)
 
+        # в print применен шаблон вывода данных, (метод format - сокращенно %)
+        # .1 - количество знаков после запятой, f - Float - дробные значения
+        # (могут быть d - числовое, s - строковое, i - целое числовое)
+
+
         # range (200)
         # print ("Measured Distance = %d cm" % dist_1)
         # speedUp = speedUp_null
@@ -292,20 +303,25 @@ while 1: # Запускаем общий цикл для всего - оптим
 
 
 
-    # в print применен шаблон вывода данных, (метод format - сокращенно %)
-    # .1 - количество знаков после запятой, f - Float - дробные значения
-    # (могут быть d - числовое, s - строковое, i - целое числовое)
-
-
-
-
     # тестирование плавного поворота серво
     pwm.set_pwm(0, 0, test_servo_pwm)
     print (test_servo_pwm)
 
 
-
-    # print ("wheel_2_backward_pwm=", wheel_2_backward_pwm)
-
     # clock.tick(FPS)
+
+
+except KeyboardInterrupt:
+    # ...
+    print("Exit pressed Ctrl+C")  # Выход из программы по нажатию Ctrl+C
+except:
+    # ...
+    print("Other Exception")  # Прочие исключения
+    print("--- Start Exception Data:")
+    traceback.print_exc(limit=2, file=sys.stdout)  # Подробности исключения через traceback
+    print("--- End Exception Data:")
+finally:
+    print("CleanUp")  # Информируем о сбросе пинов
+    GPIO.cleanup()  # Возвращаем пины в исходное состояние
+    print("End of program")  # Информируем о завершении работы программы
 
