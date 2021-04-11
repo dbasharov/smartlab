@@ -265,7 +265,7 @@ try:
         if dist_1 > 30:
             # trig_dist_1 = True
             # flagUp = trig_dist_1
-            print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
+            print ("Расстояние с центрального УЗ датчика больше 30 см = %d cm" % dist_1)
             # print ("Measured Distance = %.1f cm" % dist_1)
 
             speedUp = speedUp + 20
@@ -275,9 +275,9 @@ try:
             print (wheel_1_fwd_pwm)
 
         if  dist_1 <= 30:
-            print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
+            print ("Расстояние с центрального УЗ датчика меньше 30 см = %d cm" % dist_1)
             wheel_1_fwd_pwm = wheel_2_fwd_pwm = wheel_3_fwd_pwm = wheel_4_fwd_pwm = 0
-            time.sleep(1)
+            # time.sleep(1)
 
             # в print применен шаблон вывода данных, (метод format - сокращенно %)
             # .1 - количество знаков после запятой, f - Float - дробные значения
