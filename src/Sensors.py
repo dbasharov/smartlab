@@ -44,6 +44,7 @@ def init_sensors():
 
     print ("Инициализируем все сенсоры")
     init_ultrasonic_sensors()
+    # init_other_sensors() # сюда вставляем функции для всех других сенсоров
 
 
 def init_ultrasonic_sensors():
@@ -53,7 +54,7 @@ def init_ultrasonic_sensors():
     """
     print ("Инициализируем ультразвуковой сенсор")
 
-    init_ultrasonic_sensor(23, 24) # GPIO_TRIGGER = 23  # пин на передачу на датчик, GPIO_ECHO = 24 пин на прием с датчика, на нем меряем время возврата сигнала
+    # init_ultrasonic_sensor(23, 24) # GPIO_TRIGGER = 23  # пин на передачу на датчик, GPIO_ECHO = 24 пин на прием с датчика, на нем меряем время возврата сигнала
 
     # init_ultrasonic_sensor(17, 18)
 
