@@ -310,18 +310,18 @@ while 1: # Запускаем общий цикл для всего - оптим
 
     # clock.tick(FPS)
 
-
-except KeyboardInterrupt:
-    # ...
-    print("Exit pressed Ctrl+C")  # Выход из программы по нажатию Ctrl+C
-except:
-    # ...
-    print("Other Exception")  # Прочие исключения
-    print("--- Start Exception Data:")
-    traceback.print_exc(limit=2, file=sys.stdout)  # Подробности исключения через traceback
-    print("--- End Exception Data:")
-finally:
-    print("CleanUp")  # Информируем о сбросе пинов
-    GPIO.cleanup()  # Возвращаем пины в исходное состояние
-    print("End of program")  # Информируем о завершении работы программы
+    try:
+    except KeyboardInterrupt:
+        # ...
+        print("Exit pressed Ctrl+C")  # Выход из программы по нажатию Ctrl+C
+    except:
+        # ...
+        print("Other Exception")  # Прочие исключения
+        print("--- Start Exception Data:")
+        traceback.print_exc(limit=2, file=sys.stdout)  # Подробности исключения через traceback
+        print("--- End Exception Data:")
+    finally:
+        print("CleanUp")  # Информируем о сбросе пинов
+        GPIO.cleanup()  # Возвращаем пины в исходное состояние
+        print("End of program")  # Информируем о завершении работы программы
 
