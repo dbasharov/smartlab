@@ -1,8 +1,11 @@
-import pygame  # для работы с клавиатурой
-#---
+import pygame  # для работы с клавиатурой, здесь же "отрисовка" графического интерфейся для прослушки клавиш, можно развить до содержательного
+
 
 def init_input():
-    print ("Инициализируем Pygame (для работы с клавиатурой)")
+    """
+Инициализация Pygame для работы с клавиатурой. Создание графического интерфейса.
+    """
+    print ("Инициализируем Pygame для работы с клавиатурой")
 
     pygame.init()  # инициализация опроса клавиатуры через Pygame
 
@@ -31,7 +34,7 @@ def init_input():
 
 
 def get_keyboard_values():
-    keys = dict()
+    keys = dict() # словарь для присвоения состояний нажатия клавиш нашим переменным, отвечающим за управление по нажатию кнопок
     keys['flagLeft'] = False
     keys['flagRight'] = False
     keys['flagUp'] = False
@@ -53,7 +56,7 @@ def get_keyboard_values():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # Выход по какому условию? Нужен?
             exit()
-        elif event.type == pygame.KEYDOWN:  # Проверка нажатия кнопки
+        elif event.type == pygame.KEYDOWN:  # Проверка нажатия кнопок
             if event.key == pygame.K_LEFT:  # Обозначение клавиш из Pygame
                 keys['flagLeft'] = True  # поворот передней оси влево
             elif event.key == pygame.K_RIGHT:
@@ -71,18 +74,17 @@ def get_keyboard_values():
             elif event.key == pygame.K_4:
                 keys['servo_mode_4'] = True  # параллельная парковка, обе оси вправо
             elif event.key == pygame.K_5:
-                keys['servo_mode_5'] = True
+                keys['servo_mode_5'] = True  # поворот вокруг центра - передняя ось повернута вправо, заняя ось повернута влево
             elif event.key == pygame.K_6:
-                keys['servo_mode_6'] = True
+                keys['servo_mode_6'] = True  # поворот вокруг центра - передняя ось повернута влево, заняя ось повернута вправо
             elif event.key == pygame.K_7:
-                keys['servo_mode_7'] = True
+                keys['servo_mode_7'] = True  # вращение вокруг своего центра с помощью танкового разворота (клавиши 1 и 2)
 
-            # тестирование плавного поворота серво
+
             elif event.key == pygame.K_8:
-                keys['test_servo_left'] = True
-
+                keys['test_servo_left'] = True  # тестирование крайних значений ШИМ серво
             elif event.key == pygame.K_9:
-                keys['test_servo_right'] = True
+                keys['test_servo_right'] = True   # тестирование крайних значений ШИМ серво
 
             if event.key in [pygame.K_SPACE]:  # общий стоп
                 keys['reset_position'] = True
@@ -93,4 +95,4 @@ def get_keyboard_values():
                 keys['stop_position'] = True
 
     # return flagLeft, flagRight, flagUp, flagDown, servo_mode_1, servo_mode_2, servo_mode_3, servo_mode_4, servo_mode_5, servo_mode_6, servo_mode_7, test_servo_left, test_servo_right, reset_position, stop_position
-    return keys
+    return keys # возвращаем все значения переменных словаря keys.
