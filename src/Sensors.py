@@ -57,7 +57,8 @@ def init_ultrasonic_sensors():
     # почему два раза назначаем? Повтор в mechanical_control
     # GPIO_TRIGGER = 23  # пин на передачу на датчик, GPIO_ECHO = 24 пин на прием с датчика,
     # на нем меряем время возврата сигнала
-    init_ultrasonic_sensor()
+    init_ultrasonic_sensor(GPIO_TRIGGER, GPIO_ECHO)
+    # init_ultrasonic_sensor(23, 24)
 
     # init_ultrasonic_sensor(17, 18)
 
