@@ -48,7 +48,7 @@ def init_sensors():
 
 def init_ultrasonic_sensors():
     """
-    Инициализируем ультразвуковые сенсоры
+    Инициализируем ультразвуковые сенсоры,
 
     """
     print ("Инициализируем ультразвуковой сенсор")
@@ -60,21 +60,14 @@ def init_ultrasonic_sensors():
 
 def init_ultrasonic_sensor(GPIO_TRIGGER, GPIO_ECHO): # GPIO_TRIGGER - пин на передачу на датчик, GPIO_ECHO - пин на прием с датчика, на нем меряем время возврата сигнала
     """
-    ораполрплорп
-    :param GPIO_TRIGGER:
-    :param GPIO_ECHO:
+    :param GPIO_TRIGGER: назначаем номер пина на Raspberry PI для работы с ТРИГГЕРОМ ультразвукового датчика
+    :param GPIO_ECHO: назначаем номер пина на Raspberry PI для работы с ЭХО ультразвукового датчика
     """
     print ("Инициализируем ультразвуковой датчик")
 
 
-
-
-
-
-    # set GPIO Pins
-
-    # set GPIO direction (IN / OUT)
-    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)  # на триггер назначаем исходящий (1 или True - назначает 3,3 В на пине)
-    GPIO.setup(GPIO_ECHO, GPIO.IN)  # эхо делаем на прием
+    # Установка режима работы пинов GPIO (IN / OUT)
+    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)  # на пин триггера назначаем исходящий (1 или True - назначает 3,3 В на пине)
+    GPIO.setup(GPIO_ECHO, GPIO.IN)      # на пин эхо делаем на входящий
 
 
