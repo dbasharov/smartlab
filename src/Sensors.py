@@ -2,13 +2,14 @@ import time
 import RPi.GPIO as GPIO # для работы с GPIO
 
 
-GPIO.setwarnings(False)
+GPIO.setwarnings(False)     # Отключить предупреждения - не рекомендуется
 
 def distance(GPIO_TRIGGER, GPIO_ECHO):
-    # set Trigger to HIGH
+
+    # Устанавливаем пин на "Trigger" датчика в состояние HIGH (True или 1)
     GPIO.output(GPIO_TRIGGER, True)
 
-    # устанавливаем триггер через 0.01ms в состояние LOW (False или 0)
+    # Устанавливаем пин на триггер датчика через 0.01ms в состояние LOW (False или 0)
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
 
