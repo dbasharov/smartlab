@@ -76,4 +76,3 @@ def init_ultrasonic_sensor(GPIO_TRIGGER, GPIO_ECHO): # GPIO_TRIGGER - пин н�
     GPIO.setup(GPIO_TRIGGER, GPIO.OUT)  # на пин триггера назначаем исходящий (1 или True - назначает 3,3 В на пине)
     GPIO.setup(GPIO_ECHO, GPIO.IN)      # на пин эхо делаем на входящий
 
-
