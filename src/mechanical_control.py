@@ -31,7 +31,7 @@ servo_set_2_right = servo_nul # установка серв задней оси 
 # здесь весь коридор смещен к верхнему значению на 16 для геометрического совпадения с корпусом
 # весь диапазон 180 градусов составляет 380 "шагов" - по 190 шагов на 90 градусов в каждую сторону
 
-test_servo_min = 80 # 68 - минимальное значение сработки - превышает угол 90 / для зеленых - 68
+test_servo_min = 80 # 68 - минимальное значение сработки для синих - превышает угол 90 / для зеленых - 80
 test_servo_center = 350 # 291 - среднее (математическое) положение между крайними значениями, можно скорректировать для более точного совпадения с геометрией корпуса / для зеленых - 290 среднне математическое
 test_servo_max = 497 # 514 - максимальное значение сработки для синих - превышает угол 90 / для зеленых - 511
 
@@ -207,13 +207,13 @@ try:
         elif keys['test_servo_left']:
             # test_servo_min = test_servo_min - 1
             test_servo_pwm = test_servo_min
-            time.sleep(0.2)
+            # time.sleep(0.2)
             print ("servo left")
 
         elif keys['test_servo_right']:
-            # test_servo_max = test_servo_max + 1
+            test_servo_max = test_servo_max + 1
             test_servo_pwm = test_servo_max
-            # time.sleep(0.2)
+            time.sleep(0.2)
             print ("servo right")
 
             # test_servo_min = 154
