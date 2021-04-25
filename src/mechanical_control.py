@@ -39,7 +39,7 @@ test_servo_max = 497 # 514 - максимальное значение сраб�
 # test_servo_min = 204  (154)
 # test_servo_center = 307  (322)
 # test_servo_max = 409  (491)
-# test_servo_pwm = 0
+test_servo_pwm = 0
 
 
 # переменные, которые включают/выключают импульсы на колесах (ШИМ - пары чисел из адафрут 0, 4095 и т.п.)переднее левое включение/
@@ -205,8 +205,8 @@ try:
 
         # тестирование значений ШИМ серво
         elif keys['test_servo_left']:
-            # test_servo_min = test_servo_min - 1
-            test_servo_pwm = test_servo_min
+            test_servo_min = test_servo_min - 1
+            # test_servo_pwm = test_servo_min
             # time.sleep(0.2)
             print ("servo left")
 
