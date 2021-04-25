@@ -271,7 +271,7 @@ try:
 
         # dist_2 = distance(trigg_2, echo_2) #GPIO_TRIGGER, GPIO_ECHO - присвоение значений GPIO
 
-        print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
+        # print ("Расстояние с центрального УЗ датчика = %d cm" % dist_1)
 
         # if dist_1 > 30:
         #     # trig_dist_1 = True
