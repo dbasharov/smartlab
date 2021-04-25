@@ -248,6 +248,9 @@ try:
         pwm.set_pwm(15, 0, servo_set_2_right) # Серво 4 (задний правый, на задней оси)
 
 
+        # тестирование диапазона работы серво
+        pwm.set_pwm(0, 0, test_servo_pwm)
+        print (test_servo_pwm)
 
 
     # ----------------------- автоматический режим
@@ -313,9 +316,6 @@ try:
 
 
 
-        # тестирование плавного поворота серво
-        pwm.set_pwm(0, 0, test_servo_pwm)
-        print (test_servo_pwm)
 
 
         # clock.tick(FPS)
