@@ -20,7 +20,7 @@ init_input()
 pwm = Adafruit_PCA9685.PCA9685(address=0x40) # задаем переменную - обращение к контроллеру PWM -  по умолчанию, если не введен адрес устройства, используется адрес 0x40
 pwm.set_pwm_freq(50) # Частота ШИМ-сигнала, равная 50Гц (20 мс) - для работы серво
 
-servo_nul = 307 # установка серв передней оси в исходное положение
+servo_nul = 293 # 307 - синие установка серв передней оси в исходное положение
 servo_set_1_left = servo_nul # установка серв передней оси в исходное положение
 servo_set_1_right = servo_nul # установка серв передней оси в исходное положение
 servo_set_2_left = servo_nul # установка серв задней оси в исходное положение
@@ -113,14 +113,14 @@ try:
 
         # поворот серв передней оси налево
         if keys['flagLeft']:
-            servo_set_1_left = 409
-            servo_set_1_right = 409
+            servo_set_1_left = 393
+            servo_set_1_right = 393
 
 
         # поворот серв передней оси направо
         elif keys['flagRight']:
-            servo_set_1_left = 204
-            servo_set_1_right = 204
+            servo_set_1_left = 193
+            servo_set_1_right = 193
 
 
         # все вперед
@@ -174,34 +174,34 @@ try:
 
 
         elif keys['servo_mode_3']: # параллельная парковка, обе оси влево
-            servo_set_1_left = 409
-            servo_set_1_right = 409
-            servo_set_2_left = 409
-            servo_set_2_right = 409
+            servo_set_1_left = 393
+            servo_set_1_right = 393
+            servo_set_2_left = 393
+            servo_set_2_right = 393
 
         elif keys['servo_mode_4']: # параллельная парковка, обе оси вправо
-            servo_set_1_left = 204
-            servo_set_1_right = 204
-            servo_set_2_left = 204
-            servo_set_2_right = 204
+            servo_set_1_left = 193
+            servo_set_1_right = 193
+            servo_set_2_left = 193
+            servo_set_2_right = 193
 
         elif keys['servo_mode_5']: # движение по окружности вокруг центра против часовой стрелки
-            servo_set_1_left = 409
-            servo_set_1_right = 409
-            servo_set_2_left = 204
-            servo_set_2_right = 204
+            servo_set_1_left = 393
+            servo_set_1_right = 393 # 409
+            servo_set_2_left = 193
+            servo_set_2_right = 193 # 204
 
         elif keys['servo_mode_6']: # # движение по окружности вокруг центра по часовой стрелке
-            servo_set_1_left = 204
-            servo_set_1_right = 204
-            servo_set_2_left = 409
-            servo_set_2_right = 409
+            servo_set_1_left = 193
+            servo_set_1_right = 193
+            servo_set_2_left = 393
+            servo_set_2_right = 393
 
         elif keys['servo_mode_7']: # # движение на месте вокруг своего центра, после поворота серв управляем танковым разворотом
-            servo_set_1_left = 204
-            servo_set_1_right = 409
-            servo_set_2_left = 409
-            servo_set_2_right = 204
+            servo_set_1_left = 193
+            servo_set_1_right = 393
+            servo_set_2_left = 393
+            servo_set_2_right = 193
 
         # тестирование значений ШИМ серво
         elif keys['test_servo_left']:
